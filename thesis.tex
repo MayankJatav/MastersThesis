@@ -1,0 +1,182 @@
+%%% Extra Elements %%%
+
+% Initialize Document (Report)
+\documentclass[12pt, twoside, a4paper]{report}
+\author{Mayank Jatav}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Font Options
+% Times New Roman and DropCap
+\usepackage{mathptmx, lettrine}
+\usepackage{mathtools,amsmath}
+\usepackage{gensymb}
+\usepackage{amsfonts}
+\usepackage[useregional]{datetime2}
+% Beautiful Math Font
+\usepackage{eulervm}
+\usepackage{pdfpages}
+
+
+% Table Options
+\usepackage{array, longtable, subcaption, multirow, tabularx, booktabs}
+\captionsetup{%
+	figurename=Figure
+	tablename=Table
+}
+
+% Graphics and Figure Options
+\usepackage{graphics, float, xcolor}
+
+% Aligning/Formatting Equations
+\usepackage{amsmath}
+
+% Typeset Text
+\usepackage{microtype}
+\usepackage{epstopdf}
+\usepackage{subcaption}
+\usepackage{graphicx}
+% \usepackage{subfig}
+\usepackage{tabularray}
+\usepackage[normalem]{ulem}
+
+% Customize Lists
+\usepackage{enumitem}
+\usepackage{lscape, rotating, layout}
+\usepackage[a4paper, left=20mm, right=20mm, top=30mm, bottom=30mm]{geometry}	% Online
+% \usepackage[a4paper, left=35mm, right=20mm, top=30mm, bottom=30mm]{geometry} 	% Print
+
+% Fancy Header
+\usepackage{fancyhdr}
+\fancyhf{}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\setlength{\headheight}{3mm}
+\setlength{\footskip}{10mm}
+
+% Referencing Options
+\usepackage{cite}
+
+% Blank Pages - Empty Header
+\usepackage{emptypage}
+% Chapter Title Design
+\usepackage[T1]{fontenc}
+\usepackage[charter]{quotchap}
+
+% Hyphenation
+\usepackage{hyphenat}
+\usepackage[english]{babel}
+% roman numbers
+\usepackage{romannum}
+
+% Number Formatter
+\usepackage{siunitx}
+
+% Color HyperLinks
+\definecolor{darkpastelgreen}{rgb}{0.01, 0.75, 0.24}
+\usepackage{hyperref, url}
+
+% Online
+\hypersetup{colorlinks=true, linkcolor=blue, citecolor=darkpastelgreen, filecolor=magenta, urlcolor=blue}
+
+% Acronyms/Glossary
+\usepackage[nopostdot, style=super, nonumberlist, toc, automake, acronym]{glossaries}
+\makeglossaries
+
+\renewcommand{\glsnamefont}[1]{\textbf{#1}}
+\input{contents/glossary}
+
+% Macro commands
+%%% keywords
+\providecommand{\keywords}[1]{\textbf{\textit{Keywords---}} #1}
+%%% Big O notation
+\newcommand{\bigO}[1]{\ensuremath{\mathop{}\mathopen{}\mathcal{O}\mathopen{}\left(#1\right)}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parskip 2.5mm		% Space before a New Paragraph
+\parindent 0pt		% Indent Paragraphs
+\linespread{1.3}	% Space between Lines of the paragraph
+
+\setlength{\headheight}{15pt}
+
+% Initialize Table of Contents, List of Figures and List of Tables
+\AtBeginDocument{\addtocontents{toc}{\protect\thispagestyle{empty}}}
+\AtBeginDocument{\addtocontents{lof}{\protect\thispagestyle{empty}}}
+\AtBeginDocument{\addtocontents{lot}{\protect\thispagestyle{empty}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+\pagenumbering{gobble}
+
+\include{contents/title_page}
+\include{contents/dedication}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Change Page Numbering Format
+\pagenumbering{roman}
+
+\include{contents/approval}
+\include{contents/declaration}
+\include{contents/certificate}
+\include{contents/acknowledgement}
+\include{contents/abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+% table of contents
+\setcounter{tocdepth}{5}
+\tableofcontents
+% list of figures
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Figures}
+% list of tables
+\listoftables
+\addcontentsline{toc}{chapter}{List of Tables}
+% abbreviations
+\phantomsection
+\include{contents/abbreviations}
+\addcontentsline{toc}{chapter}{Abbreviations}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+%%%% Chapters %%%%%%
+% PART I: Research Work
+\include{contents/introduction}
+\include{contents/fabric_classification/project_overview}
+\include{contents/fabric_classification/problem_statement}
+\include{contents/fabric_classification/motivation_objective}
+\include{contents/fabric_classification/methodology}
+\include{contents/fabric_classification/results}
+\include{contents/fabric_classification/conclusion}
+\include{contents/fabric_classification/future_scope}
+\include{contents/fabric_classification/publication}
+
+% PART II: Internship Work
+\include{contents/soar_soc/project_overview}
+\include{contents/soar_soc/problem_statement}
+\include{contents/soar_soc/motivation_objective}
+\include{contents/soar_soc/methodology}
+\include{contents/soar_soc/results}
+\include{contents/soar_soc/conclusion}
+\include{contents/soar_soc/future_scope}
+\include{contents/soar_soc/internship_certificate}
+
+% General Conclusion
+\include{contents/general_conclusion}
+
+%%%%%%%%%%%%%%%%%%%%%
+
+
+\baselineskip=16pt	% Length between two lines in a paragraph
+\phantomsection
+\addcontentsline{toc}{chapter}{References}
+\bibliographystyle{unsrt}
+\renewcommand{\bibname}{References}
+\bibliography{references}
+\end{document}

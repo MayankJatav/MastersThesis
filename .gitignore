@@ -1,0 +1,37 @@
+# .gitignore for LaTeX projects
+
+# LaTeX intermediate and output files
+*.aux
+*.bbl
+*.blg
+*.brf
+*.fls
+*.fdb_latexmk
+*.glo
+*.gls
+*.ist
+*.lof
+*.log
+*.lot
+*.out
+*.toc
+*.acn
+*.acr
+*.alg
+*.glg
+*.glsdefs
+*.synctex.gz
+*.pdf
+
+# VSCode settings
+.vscode/
+
+# Mac system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+
+# Backup files
+*~
+*.bak
