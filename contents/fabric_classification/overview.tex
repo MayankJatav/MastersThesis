@@ -1,0 +1,13 @@
+\chapter{Fabric Classification using Deep Learning}
+
+Textile fabrics are widely used across several industries—not only in clothing and fashion but also in home furnishings, healthcare, automobiles, and aerospace. Each type of fabric has its own unique texture, appearance, and structure. With more than 25,000 known fabric types, identifying them accurately is a challenging task. However, this identification is important, as the type of fabric often determines how it can be used—for example, in garments, medical supplies, or interior materials.
+
+Traditionally, fabric classification has been carried out using manual and chemical methods such as the burn test, solubility test, or microscopic fiber inspection. Although these methods can be effective, they are usually time-consuming and require skilled personnel. In industries where quick decisions and large-scale processing are needed, such as fashion retail or textile manufacturing, these manual methods are not always practical.
+
+In recent years, advances in computer vision and deep learning have opened up new possibilities for automating fabric classification. Deep learning models, particularly Convolutional Neural Networks (CNNs), are capable of learning fine-grained patterns and textures from images, allowing for reliable fabric classification without hand-crafted features. Additionally, Vision Transformers (ViTs) have emerged as powerful models that can capture global relationships within an image, making them suitable for tasks involving complex texture and structure, such as fabric analysis.
+
+In this thesis, we explore different deep learning approaches for classifying fabrics using images. The first approach is based on transfer learning using the VGG-16 model, which has been fine-tuned on a large dataset of fabric images. The second approach, known as TextileNet, compares several pre-trained CNN models using two different datasets—Optical Coherence Tomography (OCT) images and macro fabric images. This work highlights the strong performance of MobileNetV2, especially when working with OCT images. The third method makes use of a Vision Transformer for feature extraction, combined with PCA, LDA, and a support vector machine (SVM) for classification.
+
+Through the implementation and comparison of these methods, we aim to understand the strengths and limitations of each approach. Based on the insights gained, a new model combining both CNN and Vision Transformer branches has been proposed to improve the accuracy and robustness of fabric classification.
+
+% Overview of the research project.
