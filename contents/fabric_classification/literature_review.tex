@@ -28,12 +28,26 @@ Although the dataset covers a broader range of materials beyond textiles, its fa
 
 This dataset serves as a strong foundation for deep learning models focused on material classification in fine-grained scenarios and is especially relevant when the goal is to distinguish fabrics based on their structural textures and reflectance rather than color or shape alone.
 
-\begin{itemize}
-    \item \textbf{B. Optical Coherence Tomography Image Dataset of Textile Fabrics} \\
-    This dataset captures the internal structure of fabrics through OCT imaging, offering depth-wise information that is typically not visible in standard RGB images.
+\subsubsection{B. Optical Coherence Tomography Image Dataset of Textile Fabrics}
 
-    \item \textbf{C. TextileNet: A Material Taxonomy-Based Fashion Textile Dataset} \\
-    A large-scale dataset constructed using fibre and fabric taxonomies. It supports classification of materials at multiple levels using standard images collected from various sources.
-\end{itemize}
+The Optical Coherence Tomography (OCT) image dataset of textile fabrics is a unique and specialized dataset that provides high-resolution cross-sectional images of fabric structures. Developed by Sabuncu and Ozdemir~\cite{sabuncu2022optical}, this dataset aims to support material classification tasks through depth imaging and has proven useful for textile engineering, recycling, and forensic analysis.
 
-These datasets not only support the training of neural networks but also address different levels of classification complexity—ranging from identifying physical structures to recognizing complex real-world garment materials. The following subsections explore each dataset in detail.
+The dataset includes OCT scans of fabrics made purely from cotton, wool, and polyester. For each material type, three different fabric samples were selected, resulting in a total of nine fabric categories. Using the Thorlabs CAL110C1 OCT system, each sample was scanned at over a hundred random surface locations to generate detailed cross-sectional images, commonly known as B-scans. The scan length was fixed at 2\,mm across all samples, and images were stored in raw \texttt{.png} format without any additional filtering or preprocessing.
+
+A key advantage of OCT imaging lies in its ability to reveal internal microstructural features of the fabric that are not visible in standard RGB images. These features include weave patterns, layer thickness, and material density, making OCT particularly valuable for classifying fabrics that may appear visually similar on the surface.
+
+The dataset was structured into three main folders—cotton, wool, and polyester—each containing multiple scans from different fabric pieces of the same material. This setup provides a clean and well-labeled dataset that is suitable for training and testing deep learning models, especially those focused on learning from structural features rather than visual appearance alone.
+
+Overall, the OCT image dataset offers a high degree of consistency and detail, which makes it ideal for tasks that require fine-grained classification of fabric types based on internal structure. Its application extends beyond classification, with potential uses in recycling processes, textile defect detection, and automated quality control in textile production.
+
+\subsubsection{C. TextileNet: A Material Taxonomy-Based Fashion Textile Dataset}
+
+TextileNet is a large-scale, taxonomy-driven dataset designed to support textile material identification using deep learning techniques. Introduced by Shu Zhong et al.~\cite{zhong2023textilenet}, it addresses a major gap in existing datasets by providing a structured taxonomy of textile materials, divided into two primary categories: fibres and fabrics. Unlike most fashion-related datasets that often mix fibre and fabric labels or contain vague annotations, TextileNet provides a clearly defined and scientifically grounded label structure developed in collaboration with material science experts.
+
+The dataset is split into two parts: \textit{TextileNet-fibre} and \textit{TextileNet-fabric}, comprising 33 fibre labels and 27 fabric labels, respectively. The total dataset consists of approximately 760,949 images, sourced from Google Images and reconstructed fashion datasets like iMaterialist. The image collection process was carefully curated using keyword-based queries derived from the defined textile taxonomies, ensuring that the dataset reflects real-world clothing items while maintaining a consistent label scheme.
+
+What makes TextileNet particularly valuable is its taxonomy-based design. The fibre taxonomy includes natural, synthetic, and regenerated fibres such as cotton, wool, polyester, bamboo viscose, and milk casein. The fabric taxonomy, on the other hand, categorizes textiles based on their production method (woven, knitted, non-woven) and includes examples like denim, tweed, velvet, and jersey.
+
+The dataset has been validated using both Convolutional Neural Networks (CNNs) and Vision Transformers (ViTs), with baseline models achieving over 80\% top-5 accuracy on classification tasks. It not only serves as a resource for textile classification but also supports sustainability-focused goals by enabling traceability of garments back to their fibre and fabric origins—a key step in promoting textile circularity.
+
+Overall, TextileNet stands out for its large scale, well-structured taxonomy, and practical relevance. It is suitable for training robust models that can identify complex fabric compositions in garments, supporting applications in retail, recycling, supply chain management, and sustainable fashion design.
