@@ -7,3 +7,33 @@ Traditionally, fabric classification relied on manual techniques and physical te
 In this section, we review key research contributions that have applied deep learning techniques for fabric classification. The datasets described here, used in these studies are carefully considered, as data quality and diversity are vital to achieving strong model performance. We also provide a detailed discussion of the three papers that were selected and implemented as part of this research work. Each paper highlights a different modeling approach offering valuable insights into the strengths and limitations of current methodologies.
 
 By analyzing these works, we aim to identify the common practices, innovative ideas, and existing challenges in the domain, which in turn have shaped the direction of our proposed methodology.
+
+\subsection{Dataset Overview}
+
+The development of accurate and generalizable deep learning models for fabric classification is heavily dependent on the availability of high-quality, diverse, and well-structured datasets. Each dataset used in this domain captures textile properties from a unique perspective—some focus on fine surface-level textures, others provide microscopic or structural imaging, and some present large-scale image collections labeled through expert-driven taxonomies.
+
+In this section, we present a detailed review of three key datasets that were used in the implementation and evaluation of deep learning models for this research. These datasets have been selected for their relevance, diversity, and their ability to represent different challenges in fabric classification. Each dataset has contributed to our understanding of how fabrics can be categorized based on visual cues, micro-structures, and material properties. The datasets reviewed are described below:
+
+\newpage
+
+\subsubsection{A. Fine-Grained Material Classification Using Micro-geometry and Reflectance}
+
+One of the foundational datasets used for fine-grained material classification is based on micro-geometry and reflectance properties. This dataset, introduced by Kampouris et al.~\cite{kampouris2016fine}, captures subtle material differences through high-resolution images that include shape, surface detail, and reflectance captured under varying lighting conditions.
+
+The dataset was developed to aid in distinguishing materials that are visually similar to the human eye but differ in their physical or optical properties. It includes a range of fabrics and other material surfaces, photographed under controlled settings using a multi-light camera rig. Each sample is captured from multiple angles and under multiple lighting directions to collect reflectance fields. This setup allows for capturing texture, gloss, and geometric cues that are often difficult to extract from standard RGB images.
+
+What makes this dataset particularly useful for material classification is its emphasis on surface detail and reflectance behavior, rather than color or pattern alone. This makes it ideal for deep learning models that aim to identify materials based on physical characteristics, which are more consistent across environments compared to visual patterns.
+
+Although the dataset covers a broader range of materials beyond textiles, its fabric subset is still highly valuable. It includes fabrics like cotton, wool, denim, and silk—each captured in fine detail—providing strong training data for distinguishing between these visually similar but structurally different materials.
+
+This dataset serves as a strong foundation for deep learning models focused on material classification in fine-grained scenarios and is especially relevant when the goal is to distinguish fabrics based on their structural textures and reflectance rather than color or shape alone.
+
+\begin{itemize}
+    \item \textbf{B. Optical Coherence Tomography Image Dataset of Textile Fabrics} \\
+    This dataset captures the internal structure of fabrics through OCT imaging, offering depth-wise information that is typically not visible in standard RGB images.
+
+    \item \textbf{C. TextileNet: A Material Taxonomy-Based Fashion Textile Dataset} \\
+    A large-scale dataset constructed using fibre and fabric taxonomies. It supports classification of materials at multiple levels using standard images collected from various sources.
+\end{itemize}
+
+These datasets not only support the training of neural networks but also address different levels of classification complexity—ranging from identifying physical structures to recognizing complex real-world garment materials. The following subsections explore each dataset in detail.
