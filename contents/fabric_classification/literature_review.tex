@@ -15,10 +15,9 @@ The development of accurate and generalizable deep learning models for fabric cl
 In this section, we present a detailed review of three key datasets that were used in the implementation and evaluation of deep learning models for this research. These datasets have been selected for their relevance, diversity, and their ability to represent different challenges in fabric classification. Each dataset has contributed to our understanding of how fabrics can be categorized based on visual cues, micro-structures, and material properties. The datasets reviewed are described below:
 
 \newpage
+\subsubsection{A. Fine-Grained Material Classification Using Micro-geometry and Reflectance~\cite{kampouris2016fine}}
 
-\subsubsection{A. Fine-Grained Material Classification Using Micro-geometry and Reflectance}
-
-One of the foundational datasets used for fine-grained material classification is based on micro-geometry and reflectance properties. This dataset, introduced by Kampouris et al.~\cite{kampouris2016fine}, captures subtle material differences through high-resolution images that include shape, surface detail, and reflectance captured under varying lighting conditions.
+One of the foundational datasets used for fine-grained material classification is based on micro-geometry and reflectance properties. This dataset, introduced by Kampouris et al., captures subtle material differences through high-resolution images that include shape, surface detail, and reflectance captured under varying lighting conditions.
 
 The dataset was developed to aid in distinguishing materials that are visually similar to the human eye but differ in their physical or optical properties. It includes a range of fabrics and other material surfaces, photographed under controlled settings using a multi-light camera rig. Each sample is captured from multiple angles and under multiple lighting directions to collect reflectance fields. This setup allows for capturing texture, gloss, and geometric cues that are often difficult to extract from standard RGB images.
 
@@ -36,9 +35,9 @@ Although the dataset covers a broader range of materials beyond textiles, its fa
 
 This dataset serves as a strong foundation for deep learning models focused on material classification in fine-grained scenarios and is especially relevant when the goal is to distinguish fabrics based on their structural textures and reflectance rather than color or shape alone.
 
-\subsubsection{B. Optical Coherence Tomography Image Dataset of Textile Fabrics}
+\subsubsection{B. Optical Coherence Tomography Image Dataset of Textile Fabrics~\cite{sabuncu2022optical}}
 
-The Optical Coherence Tomography (OCT) image dataset of textile fabrics is a unique and specialized dataset that provides high-resolution cross-sectional images of fabric structures. Developed by Sabuncu and Ozdemir~\cite{sabuncu2022optical}, this dataset aims to support material classification tasks through depth imaging and has proven useful for textile engineering, recycling, and forensic analysis.
+The Optical Coherence Tomography (OCT) image dataset of textile fabrics is a unique and specialized dataset that provides high-resolution cross-sectional images of fabric structures. Developed by Sabuncu and Ozdemir, this dataset aims to support material classification tasks through depth imaging and has proven useful for textile engineering, recycling, and forensic analysis.
 
 The dataset includes OCT scans of fabrics made purely from cotton, wool, and polyester. For each material type, three different fabric samples were selected, resulting in a total of nine fabric categories. Using the Thorlabs CAL110C1 OCT system, each sample was scanned at over a hundred random surface locations to generate detailed cross-sectional images, commonly known as B-scans. The scan length was fixed at 2\,mm across all samples, and images were stored in raw \texttt{.png} format without any additional filtering or preprocessing.
 
@@ -56,9 +55,9 @@ The dataset was structured into three main folders—cotton, wool, and polyester
 
 Overall, the OCT image dataset offers a high degree of consistency and detail, which makes it ideal for tasks that require fine-grained classification of fabric types based on internal structure. Its application extends beyond classification, with potential uses in recycling processes, textile defect detection, and automated quality control in textile production.
 
-\subsubsection{C. TextileNet: A Material Taxonomy-Based Fashion Textile Dataset}
+\subsubsection{C. TextileNet: A Material Taxonomy-Based Fashion Textile Dataset~\cite{zhong2023textilenet}}
 
-TextileNet is a large-scale, taxonomy-driven dataset designed to support textile material identification using deep learning techniques. Introduced by Shu Zhong et al.~\cite{zhong2023textilenet}, it addresses a major gap in existing datasets by providing a structured taxonomy of textile materials, divided into two primary categories: fibres and fabrics. Unlike most fashion-related datasets that often mix fibre and fabric labels or contain vague annotations, TextileNet provides a clearly defined and scientifically grounded label structure developed in collaboration with material science experts.
+TextileNet is a large-scale, taxonomy-driven dataset designed to support textile material identification using deep learning techniques. Introduced by Shu Zhong et al., it addresses a major gap in existing datasets by providing a structured taxonomy of textile materials, divided into two primary categories: fibres and fabrics. Unlike most fashion-related datasets that often mix fibre and fabric labels or contain vague annotations, TextileNet provides a clearly defined and scientifically grounded label structure developed in collaboration with material science experts.
 
 The dataset is split into two parts: \textit{TextileNet-fibre} and \textit{TextileNet-fabric}, comprising 33 fibre labels and 27 fabric labels, respectively. The total dataset consists of approximately 760,949 images, sourced from Google Images and reconstructed fashion datasets like iMaterialist. The image collection process was carefully curated using keyword-based queries derived from the defined textile taxonomies, ensuring that the dataset reflects real-world clothing items while maintaining a consistent label scheme.
 
