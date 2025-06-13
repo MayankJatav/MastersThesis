@@ -1,3 +1,20 @@
-\chapter{SOAR in SOC}
-\section{Project Overview}
-% Overview of the internship project.
+\chapter{Security Orchestration, Automation, and Response (SOAR)}
+
+With the exponential growth of cyber threats in scale and sophistication, traditional manual approaches to threat detection and mitigation are increasingly falling short. The modern enterprise network, often comprising cloud services, remote users, and a vast array of digital endpoints, requires a faster and more structured method of incident management. In this context, \textbf{Security Orchestration, Automation, and Response (SOAR)} platforms have emerged as a transformative solution for enhancing the capabilities of Security Operations Centers (SOCs) through integration, automation, and intelligence-driven response.
+
+SOAR platforms are designed to bridge gaps between security tools, analysts, and incident response procedures. They unify security operations by integrating disparate systems such as \textit{Security Information and Event Management (SIEM)} platforms, firewalls, Endpoint Detection and Response (EDR) tools, and threat intelligence services, enabling a centralized and coordinated response to security incidents. As defined by Palo Alto Networks, SOAR platforms \textit{coordinate, execute, and automate tasks between various people and tools within a single platform} to improve the efficiency and consistency of security operations~\cite{paloalto}.
+
+This chapter presents a structured overview of SOAR, informed by practical experience during my internship at \textbf{Bharat Electronics Limited (BEL)}—a premier defense public sector unit known for its advanced work in cybersecurity systems and SOC design. The focus of the internship was to explore and contribute to the architecture and planning of a custom SOAR platform tailored to enterprise and defense needs. While the implementation specifics remain proprietary and are not disclosed in this document, the architectural insights and research carried out form the basis of the discussion presented herein.
+
+SOAR platforms typically consist of several tightly integrated modules:
+\begin{itemize}
+    \item \textbf{Incident Ingestion} through SIEM platforms (e.g., IBM QRadar, Microsoft Sentinel) that generate actionable alerts based on log correlation~\cite{microsoftsiem}.
+    \item \textbf{Tool Orchestration}, enabling communication between heterogeneous tools using standardized APIs and custom-built integrations~\cite{techtarget}.
+    \item \textbf{Automation Workflows and Playbooks}, which enable automatic execution of tasks such as threat enrichment, IP blocking, or alert prioritization without human intervention~\cite{paloalto}.
+    \item \textbf{Response Interfaces}, where analysts can manually inspect, investigate, and take action when automation is insufficient or risky~\cite{techtarget}.
+    \item \textbf{MITRE ATT\&CK Framework Integration}, providing standardized mapping of tactics and techniques used by attackers to guide defensive strategies and track threat trends~\cite{mitre}.
+\end{itemize}
+
+These capabilities not only reduce manual overhead and analyst fatigue but also enhance the speed and consistency of response across an organization's security infrastructure. The result is a significant improvement in Mean Time to Detect (MTTD) and Mean Time to Respond (MTTR), both critical performance indicators in modern SOC environments.
+
+The remainder of this chapter delves into the key functional components of a SOAR platform, emphasizing how orchestration, automation, and structured response mechanisms can effectively fortify cybersecurity defenses in mission-critical environments such as those operated by BEL and other government agencies.
