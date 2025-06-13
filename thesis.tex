@@ -78,6 +78,8 @@
 \usepackage[nopostdot, style=super, nonumberlist, toc, automake, acronym]{glossaries}
 \makeglossaries
 
+\usepackage{adjustbox}
+
 \renewcommand{\glsnamefont}[1]{\textbf{#1}}
 \input{contents/glossary}
 
@@ -144,9 +146,7 @@
 \input{contents/fabric_classification/literature_review}
 \input{contents/fabric_classification/methodology}
 \input{contents/fabric_classification/results}
-\include{contents/fabric_classification/conclusion}
-\include{contents/fabric_classification/future_scope}
-\include{contents/fabric_classification/publication}
+\input{contents/fabric_classification/conclusion}
 
 % PART II: Internship Work
 \include{contents/soar_soc/project_overview}
