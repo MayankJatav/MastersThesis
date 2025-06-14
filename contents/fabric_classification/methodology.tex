@@ -46,6 +46,13 @@ Once the image has been processed independently by the Convolutional Neural Netw
 
 The output of the final convolutional layer in the CNN stream and the final encoder layer in the ViT stream are first flattened and then concatenated along the feature dimension. This operation creates a stacked feature vector of dimension 1024, which encapsulates the most informative characteristics extracted from both branches. Feature-level fusion techniques such as concatenation are commonly used in multi-stream architectures to preserve complementary representations before classification~\cite{zhong2023textilenet, chitra2023fabric, xu2018multichannel}.
 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/ModelDiagram.png}
+    \caption{The proposed hybrid CNN–ViT architecture for fabric classification.}
+    \label{fig:model-architecture}
+\end{figure}
+
 \paragraph{Fully Connected Layer}
 
 The stacked feature vector is passed through a fully connected (FC) layer, which serves as the final transformation before classification. The FC layer acts as a dense classifier that maps the high-dimensional feature space into a 3-dimensional output, each corresponding to one of the fabric classes.
