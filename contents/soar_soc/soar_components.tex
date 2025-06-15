@@ -44,6 +44,13 @@ In summary, the Login/Signup module in the developed SOAR system provides a secu
 
 The \textbf{Dashboard} serves as the central visualization hub of the SOAR platform, enabling SOC analysts and administrators to monitor the real-time status of the security environment. It offers a bird’s-eye view of ongoing incidents, historical trends, and response metrics. Dashboards are instrumental for operational awareness, strategic decision-making, and post-incident review.
 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/splunk_soar_dashboard.jpg}
+    \caption[Example of a Splunk SOAR dashboard]{Example of a Splunk SOAR dashboard. Such dashboards provide SOC teams with real-time visibility into security operations and response effectiveness.}
+    \label{fig:splunk-soar-dashboard}
+\end{figure}
+
 In the implemented SOAR system, the dashboard consists of multiple interactive visual components:
 
 \begin{itemize}
@@ -79,6 +86,13 @@ In the implemented SOAR system, incidents are displayed in an interactive, filte
 
 Users can apply filters to view incidents by attack type, status, or severity, and initiate response actions directly from the interface. A key feature of this platform is the support for both \textbf{manual and AI-assisted incident status updates}. Analysts can choose to take manual action—such as marking an incident as mitigated—or they may delegate mitigation suggestions to a selected machine learning (ML) model, which recommends or executes responses based on historical resolution patterns.
 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/xsoar_incidents.png}
+    \caption[Incident management interface in Palo Alto Cortex XSOAR]{Incident management interface in Palo Alto Cortex XSOAR. The interface provides analysts with a comprehensive view of incidents, including filtering, status updates, and detailed metadata for each alert.}
+    \label{fig:xsoar-incidents}
+\end{figure}
+
 This AI-based mitigation capability is a significant enhancement over many commercial SOAR platforms, where AI and ML integration is either minimal or handled externally. For example, while \textbf{Splunk SOAR} provides advanced correlation and playbook automation, it does not natively include ML model selection or self-learning response recommendation without integration with third-party platforms~\cite{splunk}. Similarly, \textbf{Cortex XSOAR} enables data enrichment and contextual awareness, but machine learning functionalities often rely on Palo Alto’s Threat Intelligence or external sources~\cite{paloalto}.
 
 Open-source SOAR tools like \textbf{Shuffle} provide basic incident ingestion and display via webhook integrations, but lack built-in enrichment, severity scoring, or AI-assisted resolution workflows~\cite{techtarget}. The presented SOAR system thus bridges this gap by offering native ML model selection for predictive mitigation, making it suitable for organizations that want to experiment with or deploy AI-driven security automation.
@@ -103,6 +117,13 @@ These definitions allow non-technical users to register integrations and reuse t
 Compared to commercial solutions, this modular app-action model is aligned with industry best practices. \textbf{Splunk SOAR}, for instance, provides over 300 built-in integrations known as “apps,” each containing a set of pre-configured actions. These can be used in visual playbooks and extended via custom Python scripting~\cite{splunk}. Similarly, \textbf{Cortex XSOAR} organizes integrations into packs that include playbook tasks, data models, and API-based connectors~\cite{paloalto}. It also supports live configuration from the user interface and centralized credential management.
 
 Open-source platforms such as \textbf{Shuffle} follow a comparable model by offering REST-based integrations that can be created or imported from community repositories. Shuffle also allows users to write lightweight custom apps in Python or JavaScript, which are run in sandboxed Docker containers~\cite{techtarget}.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/shuffle_soar_apps.png}
+    \caption[[Example of the integrations (apps) interface in Shuffle SOAR]]{Example of the integrations (apps) interface in Shuffle SOAR. Users can visually manage and configure third-party integrations and their actions through a web-based UI.}
+    \label{fig:shuffle-soar-apps}
+\end{figure}
 
 One of the distinguishing features of the custom SOAR platform developed during this internship is the ability to define integrations dynamically through the web interface, without requiring backend changes or container redeployments. This approach supports rapid integration with custom in-house tools, threat intelligence APIs, or security appliances used in air-gapped and defense environments. Since each integration is abstracted into reusable action objects, users can visually link them into workflows using the workflow builder module.
 
@@ -160,6 +181,13 @@ This approach provides SOC analysts with a low-code environment to model complex
 
 The architecture of the workflow module is conceptually similar to what is offered by commercial SOAR platforms. For example, \textbf{Splunk SOAR} includes a visual playbook editor where each block represents a discrete action or condition, forming a directed flowchart~\cite{splunk}. Actions can be executed in sequence or in parallel, with support for user prompts, decision gates, and failure handling.
 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/shuffle_soar_workflow.png}
+        \caption[Example of a workflow editor in Shuffle SOAR]{Example of a workflow editor in Shuffle SOAR. The visual interface allows users to design and manage automated response workflows by connecting integration actions and defining execution logic.}
+    \label{fig:shuffle-soar-workflow}
+\end{figure}
+
 \textbf{Palo Alto Cortex XSOAR} extends this paradigm by offering sophisticated conditional flows, loops, exception management, and variable sharing across tasks~\cite{paloalto}. Its workflow engine supports both automation tasks and human-in-the-loop interactions (e.g., approval requests), enabling hybrid response models.
 
 Open-source SOAR platforms such as \textbf{Shuffle} are also designed around workflow automation, with a visual interface that allows drag-and-drop placement of integration actions, conditional paths, and data variables~\cite{techtarget}. However, Shuffle workflows typically focus on simplicity and ease of scripting, with fewer built-in safeguards or error-handling mechanisms compared to enterprise-grade systems.
@@ -187,6 +215,13 @@ The integration of MITRE ATT\&CK in SOAR platforms serves multiple purposes: it 
 Commercial SOAR solutions such as \textbf{Palo Alto Cortex XSOAR} offer built-in support for ATT\&CK. Incidents can be tagged with tactics and techniques, and dashboard modules allow visualization of coverage and attack surface exposure~\cite{paloalto}. XSOAR also supports threat intel enrichment using ATT\&CK metadata and enables filtering and reporting based on technique distributions.
 
 \textbf{Splunk SOAR} does not natively provide a full ATT\&CK matrix interface, but integrations with the Splunk Security Essentials app or external visualizations (e.g., MITRE ATT\&CK Navigator) allow SOCs to map playbooks and detections to tactics and techniques~\cite{splunk}.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/mitre_att&ck_matrix.png}
+    \caption[Interactive MITRE ATT\&CK matrix]{Interactive MITRE ATT\&CK matrix. The matrix enables analysts to visualize incident distribution across tactics and techniques, supporting rapid threat attribution and response prioritization.}
+    \label{fig:mitre-attck-matrix}
+\end{figure}
 
 Open-source platforms such as \textbf{Shuffle} generally do not include a dedicated ATT\&CK interface out-of-the-box, though users can manually tag incidents and build custom visualizations using third-party tools like ATT\&CK Navigator, Kibana, or D3.js-based dashboards~\cite{techtarget}.
 
