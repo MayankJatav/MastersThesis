@@ -1,0 +1,26 @@
+\section{Future Work}
+
+While the developed SOAR platform successfully addresses several core requirements of modern Security Operations Centers (SOCs), there remain numerous opportunities for further enhancement, optimization, and expansion. These future directions can strengthen the platform's capabilities, extend its applicability to more complex environments, and improve its operational resilience.
+
+\begin{itemize}
+    \item \textbf{Role-Based Access Control (RBAC):} Currently, the system supports basic user authentication. Future iterations can include granular RBAC to manage access permissions based on user roles (e.g., analyst, incident responder, administrator), thereby improving security and operational accountability.
+    
+    \item \textbf{Multi-Tenant Support:} To enable usage across multiple organizational units or departments, the platform could be extended with multi-tenancy features, including isolated data storage, tenant-specific playbooks, and access controls.
+
+    \item \textbf{Real-Time Threat Intelligence Feeds:} Although the platform currently supports static integrations, dynamic ingestion of real-time threat intelligence from commercial and open-source feeds (e.g., MISP, STIX/TAXII) would enhance incident enrichment, contextual awareness, and response accuracy.
+
+    \item \textbf{Advanced Machine Learning Integration:} The current AI-assisted mitigation is based on model selection and inference. Future research could explore the application of reinforcement learning or anomaly detection using time-series modeling for proactive threat prediction and adaptive response strategies.
+
+    \item \textbf{Integration with SIEM and EDR Platforms:} While the platform is designed for modular integrations, incorporating direct ingestion from widely used platforms like Splunk, ELK, Sentinel, or CrowdStrike Falcon would streamline end-to-end response pipelines.
+
+    \item \textbf{SLA and Case Management Enhancements:} Adding support for Service-Level Agreements (SLAs), task assignment, case prioritization, and escalation rules can help align the platform with enterprise-grade incident management standards.
+
+    \item \textbf{Audit Logging and Compliance Reporting:} Incorporating audit trails for every action taken in the system, along with compliance reports (e.g., for NIST, ISO 27001), would make the platform more suitable for regulated industries such as finance, healthcare, and defense.
+
+    \item \textbf{Distributed Deployment and High Availability:} To ensure operational continuity and scalability, future deployments could include support for containerization, orchestration (e.g., Kubernetes), and fault-tolerant architectures.
+
+    \item \textbf{Integration with MITRE D3FEND:} While the platform currently integrates with the MITRE ATT\&CK framework, incorporating the MITRE D3FEND framework would allow mapping of detection and defense countermeasures, further enriching SOC decision-making.
+
+\end{itemize}
+
+These future enhancements not only align with current industry trends but also address operational needs in critical infrastructure and defense environments, where reliability, flexibility, and context-aware response are paramount. Continued research and development along these lines would make the platform a comprehensive and resilient solution for next-generation cybersecurity operations.
