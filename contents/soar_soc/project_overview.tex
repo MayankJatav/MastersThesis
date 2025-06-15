@@ -1,5 +1,37 @@
 \chapter{Security Orchestration, Automation, and Response (SOAR)}
 
+Security Orchestration, Automation, and Response (SOAR) platforms are emerging as essential components in modern SOC architectures. These systems enable cybersecurity teams to automate repetitive tasks, coordinate workflows between tools, and accelerate incident response.
+
+\subsection*{Understanding the Full Form of SOAR}
+
+The acronym \textbf{SOAR} stands for \textbf{Security Orchestration, Automation, and Response}. Each term in this acronym represents a core capability that collectively empowers modern SOCs to operate with greater speed, consistency, and intelligence. The breakdown of each term is as follows:
+
+\begin{itemize}
+    \item \textbf{Security} \\
+    This represents the cybersecurity focus of the SOAR platform. It is designed to support the detection, investigation, and mitigation of cyber threats, ranging from malware attacks and phishing attempts to insider threats and data exfiltration. SOAR systems are aligned with the objectives of the SOC to protect the organization’s digital assets.
+
+    \item \textbf{Orchestration} \\
+    Orchestration refers to the integration and coordination of various security tools and technologies. A SOAR platform can interface with SIEMs, firewalls, endpoint detection and response (EDR), threat intelligence feeds, ticketing systems, and more via APIs. This allows disparate tools to work together seamlessly in a unified incident response workflow.
+
+    \begin{quote}
+        \textit{Example:} A SOAR system receives an alert from a SIEM, fetches IP reputation data from a threat intelligence platform, blocks the IP using a firewall, and creates a ticket in a helpdesk system—automatically and in real-time.
+    \end{quote}
+
+    \item \textbf{Automation} \\
+    Automation refers to the execution of predefined tasks without manual intervention. These tasks may include alert triage, log collection, enrichment of IP/domain/file indicators, and threat classification. Automation significantly reduces the workload on SOC analysts and ensures faster incident response.
+
+    \item \textbf{Response} \\
+    Response is the final phase in the SOAR cycle, where actions are taken to mitigate or contain the incident. Depending on predefined rules, responses can be:
+    \begin{itemize}
+        \item \textit{Fully automated} – e.g., blocking a malicious IP address.
+        \item \textit{Semi-automated} – e.g., requiring analyst approval before isolating a device.
+        \item \textit{Manual} – where the SOAR platform assists an analyst by enriching data and providing context.
+    \end{itemize}
+    The response phase ensures that incidents are handled in a consistent, documented, and auditable manner.
+\end{itemize}
+
+Together, these components form the foundation of a modern, intelligent, and scalable incident management system in any mature SOC environment.
+
 With the exponential growth of cyber threats in scale and sophistication, traditional manual approaches to threat detection and mitigation are increasingly falling short. The modern enterprise network, often comprising cloud services, remote users, and a vast array of digital endpoints, requires a faster and more structured method of incident management. In this context, \textbf{Security Orchestration, Automation, and Response (SOAR)} platforms have emerged as a transformative solution for enhancing the capabilities of Security Operations Centers (SOCs) through integration, automation, and intelligence-driven response.
 
 SOAR platforms are designed to bridge gaps between security tools, analysts, and incident response procedures. They unify security operations by integrating disparate systems such as \textit{Security Information and Event Management (SIEM)} platforms, firewalls, Endpoint Detection and Response (EDR) tools, and threat intelligence services, enabling a centralized and coordinated response to security incidents. As defined by Palo Alto Networks, SOAR platforms \textit{coordinate, execute, and automate tasks between various people and tools within a single platform} to improve the efficiency and consistency of security operations~\cite{paloalto}.
