@@ -1,24 +1,73 @@
 \section{Literature Review}
 
-Fabric classification has been an area of growing interest in the fields of computer vision and material science due to its wide range of applications across industries such as fashion, healthcare, manufacturing, and forensics. With the advancement of deep learning, researchers have been exploring automated methods to accurately identify and classify textile materials using image data.
+Fabric classification has gained interest within computer vision and material science, with applications across many industries, including fashion, healthcare, manufacturing, and forensics. The advancements in deep learning have enabled researchers to develop automated approaches that accurately recognize and classify textile materials using image data. 
 
-Traditionally, fabric classification relied on manual techniques and physical testing, but these approaches are time-consuming, prone to human error, and often require specialized equipment. In contrast, image-based classification using deep learning models offers a scalable and efficient alternative that can be used even in real-time applications.
+The traditional process of fabric classification has relied on manual methods and physical methods. Processes which are time-consuming, subjective to human error, and require equipment that could be specialized. The image-based classification of textiles and fabrics using deep learning models offers a more scalable and efficient approach and would allow for real-time implementations. 
 
-In this section, we review key research contributions that have applied deep learning techniques for fabric classification. The datasets described here, used in these studies are carefully considered, as data quality and diversity are vital to achieving strong model performance. We also provide a detailed discussion of the three papers that were selected and implemented as part of this research work. Each paper highlights a different modeling approach offering valuable insights into the strengths and limitations of current methodologies.
+In this section, we present key research contributions that have applied deep learning approaches to fabric classification because the datasets highlighted here (as used in these studies), are carefully considered when describing the research, as data quality and diversity are important when developing models that will be having a good performance. We also provide a detailed description of the three papers selected and implemented as part of this research work. Each paper takes a different modelling approach to highlight the merits and limitations of the current methodologies.
 
-By analyzing these works, we aim to identify the common practices, innovative ideas, and existing challenges in the domain, which in turn have shaped the direction of our proposed methodology.
+Through the exploration of all these work, we look to illuminate shared practices, inventive ideas, and existing issues in the domain, which have helped inform our proposed methodology.
 
 \subsection{Dataset Overview}
 
-The development of accurate and generalizable deep learning models for fabric classification is heavily dependent on the availability of high-quality, diverse, and well-structured datasets. Each dataset used in this domain captures textile properties from a unique perspective—some focus on fine surface-level textures, others provide microscopic or structural imaging, and some present large-scale image collections labeled through expert-driven taxonomies.
+The implementation and level of understanding of a strong, efficacious and generalized deep learning model that classifies fabrics is tied to the availability of high-quality, heterogeneous, and well-structured datasets. Each of the datasets provided in this domain provides textile properties from a fixed standpoint - with some focusing on fine surface-level textures, others providing microscopic or structural imaging, and others providing extensive predominately labeling through expert-based functional taxonomies.
 
-In this section, we present a detailed review of three key datasets that were used in the implementation and evaluation of deep learning models for this research. These datasets have been selected for their relevance, diversity, and their ability to represent different challenges in fabric classification. Each dataset has contributed to our understanding of how fabrics can be categorized based on visual cues, micro-structures, and material properties. The datasets reviewed are described below:
+Here, we provide our overview and review of three datasets which we utilized in the development and audit of our deep learning models for this research. These datasets were selected based upon relevance, heterogeneity, and the diversity of challenges that they represent in the fabric classification domain. Each dataset has helped inform our understanding of how fabrics presented visually, micro-structure, and material properties can be categorized in these helpful analyses. The datasets reviewed are described below:
 
 \subsubsection{A. Fine-Grained Material Classification Using Micro-geometry and Reflectance~\cite{kampouris2016fine}}
 
-One of the foundational datasets used for fine-grained material classification is based on micro-geometry and reflectance properties. This dataset, introduced by Kampouris et al., captures subtle material differences through high-resolution images that include shape, surface detail, and reflectance captured under varying lighting conditions.
+One of the important base datasets for fine-grained material classification is based on detailed geometry and reflectance properties, introduced by Kampouris et al., which highlights slightly different materials through high-resolution images of shape, surface details, and reflections captured under different lighting conditions.
 
-The dataset was developed to aid in distinguishing materials that are visually similar to the human eye but differ in their physical or optical properties. It includes a range of fabrics and other material surfaces, photographed under controlled settings using a multi-light camera rig. Each sample is captured from multiple angles and under multiple lighting directions to collect reflectance fields. This setup allows for capturing texture, gloss, and geometric cues that are often difficult to extract from standard RGB images.
+The dataset was captured using a custom-built photometric stereo sensor designed to acquire fine surface details of fabric materials. Each sample in the dataset corresponds to a small patch of fabric, captured under four different illumination conditions to facilitate the extraction of both micro-geometry (surface normals) and reflectance (albedo).
+
+The dataset consists of several classes of fabrics that are listed in Table~\ref{tab:fabric_distribution}. Each class contains multiple samples, with each sample having four images corresponding to different light sources.
+
+\begin{table}[H]
+\centering
+\caption{Fabric-wise Distribution of Samples and Images}
+\label{tab:fabric_distribution}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Fabric Class} & \textbf{Number of Samples} & \textbf{Total Images} \\
+\hline
+Acrylic & 12 & 48 \\
+Artificial Fur & 1 & 4 \\
+Artificial Leather & 3 & 12 \\
+Blended & 411 & 1,644 \\
+Chenille & 13 & 52 \\
+Corduroy & 24 & 96 \\
+Cotton & 588 & 2,352 \\
+Crepe & 26 & 104 \\
+Denim & 162 & 648 \\
+Felt & 4 & 16 \\
+Fleece & 33 & 132 \\
+Leather & 16 & 64 \\
+Linen & 19 & 76 \\
+Lut & 4 & 16 \\
+Nylon & 57 & 228 \\
+Polyester & 226 & 904 \\
+Satin & 24 & 96 \\
+Silk & 50 & 200 \\
+Suede & 5 & 20 \\
+Terrycloth & 30 & 120 \\
+Unclassified & 123 & 492 \\
+Velvet & 11 & 44 \\
+Viscose & 37 & 148 \\
+Wool & 90 & 360 \\
+\hline
+\textbf{Total} & \textbf{2,048} & \textbf{8,192} \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\begin{itemize}[noitemsep, topsep=0pt]
+    \item \textbf{Images per sample:} 4 RGB images (one per light source)
+    \item \textbf{Original resolution:} 640$\times$640 pixels
+    \item \textbf{Cropped resolution:} 400$\times$400 pixels (to avoid out-of-focus regions)
+    \item \textbf{Field of View:} Approximately 10 mm $\times$ 10 mm
+    \item \textbf{Working Distance:} 3 cm - Distance from the camera to the fabric sample
+\end{itemize}
 
 \begin{figure}[H]
     \centering
@@ -28,17 +77,27 @@ The dataset was developed to aid in distinguishing materials that are visually s
     \caption[Sample images from the iBug Fabric Dataset]{Sample images from the iBug Fabric Dataset: (Left) Cotton, (Middle) Polyester, (Right) Wool.}
 \end{figure}
 
-What makes this dataset particularly useful for material classification is its emphasis on surface detail and reflectance behavior, rather than color or pattern alone. This makes it ideal for deep learning models that aim to identify materials based on physical characteristics, which are more consistent across environments compared to visual patterns.
-
-Although the dataset covers a broader range of materials beyond textiles, its fabric subset is still highly valuable. It includes fabrics like cotton, wool, denim, and silk—each captured in fine detail—providing strong training data for distinguishing between these visually similar but structurally different materials.
-
-This dataset serves as a strong foundation for deep learning models focused on material classification in fine-grained scenarios and is especially relevant when the goal is to distinguish fabrics based on their structural textures and reflectance rather than color or shape alone.
-
 \subsubsection{B. Optical Coherence Tomography Image Dataset of Textile Fabrics~\cite{sabuncu2022optical}}
 
-The Optical Coherence Tomography (OCT) image dataset of textile fabrics is a unique and specialized dataset that provides high-resolution cross-sectional images of fabric structures. Developed by Sabuncu and Ozdemir, this dataset aims to support material classification tasks through depth imaging and has proven useful for textile engineering, recycling, and forensic analysis.
+The Optical Coherence Tomography (OCT) image dataset of textile fabrics is a distinct and specialized dataset comprised of high-resolution cross-sectional images of fabric structures. The dataset was produced by Sabuncu and Ozdemir, and thus far, has been used to support material classification tasks through depth imaging. Specifically, it has been helpful in textile engineering, recycling, and forensic investigations. 
 
-The dataset includes OCT scans of fabrics made purely from cotton, wool, and polyester. For each material type, three different fabric samples were selected, resulting in a total of nine fabric categories. Using the Thorlabs CAL110C1 OCT system, each sample was scanned at over a hundred random surface locations to generate detailed cross-sectional images, commonly known as B-scans. The scan length was fixed at 2\,mm across all samples, and images were stored in raw \texttt{.png} format without any additional filtering or preprocessing.
+The dataset includes OCT scans of fabrics made of only cotton, wool, and polyester. To accomplish this, three samples were taken from each of the three material types (cotton, wool, polyester) resulting in nine fabric types total. Each sample was scanned using the Thorlabs CAL110C1 OCT system over 100 random places on the surface of the sample with the objective of generating high-quality cross-sectional images or B-scans. The scans are all 2mm long and were excluded from other filtering options or pre-processing protocols, and were saved in raw \texttt{.png} images.
+
+\begin{table}[H]
+\centering
+\caption{Class-wise image distribution of the Fabric OCT Dataset}
+\begin{tabular}{ll}
+\toprule
+\textbf{Fabric Type} & \textbf{Number of images} \\
+\midrule
+Cotton & 495 \\
+Polyester & 448 \\
+Wool & 533 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+One of the main benefits of OCT imaging is that it shows aspects of a fabric’s internal microstructure that would be impossible to see from a standard RGB image: weave pattern, layer thickness, and material density internal to the fabric can provide great utility for classifying fabrics that may look the same on the surface. 
 
 \begin{figure}[H]
     \centering
@@ -48,17 +107,15 @@ The dataset includes OCT scans of fabrics made purely from cotton, wool, and pol
     \caption[Sample images from the Fabric OCT Dataset]{Sample images from the Fabric OCT Dataset: (Left) Cotton, (Middle) Polyester, (Right) Wool.}
 \end{figure}
 
-A key advantage of OCT imaging lies in its ability to reveal internal microstructural features of the fabric that are not visible in standard RGB images. These features include weave patterns, layer thickness, and material density, making OCT particularly valuable for classifying fabrics that may appear visually similar on the surface.
+The dataset used in this project was organized into three folders, cotton, wool, and polyester, with multiple scans of different fabric pieces made from the same material per folder. A dataset organized this way is well-labeled and clean, supporting the training and testing of deep learning models, model architectures that will most likely learn from structural features rather than appearance. 
 
-The dataset was structured into three main folders—cotton, wool, and polyester—each containing multiple scans from different fabric pieces of the same material. This setup provides a clean and well-labeled dataset that is suitable for training and testing deep learning models, especially those focused on learning from structural features rather than visual appearance alone.
-
-Overall, the OCT image dataset offers a high degree of consistency and detail, which makes it ideal for tasks that require fine-grained classification of fabric types based on internal structure. Its application extends beyond classification, with potential uses in recycling processes, textile defect detection, and automated quality control in textile production.
+In summary, the OCT image dataset has a high degree of uniformity and detail, making it highly suitable for fine-grained classification of fabrics according to their internal structure. Additionally, its potential goes beyond classification, applications include recycling, identifying defects in textiles, and suitable for automated textile quality control assessments.
 
 \subsubsection{C. TextileNet: A Material Taxonomy-Based Fashion Textile Dataset~\cite{zhong2023textilenet}}
 
-TextileNet is a large-scale, taxonomy-driven dataset designed to support textile material identification using deep learning techniques. Introduced by Shu Zhong et al., it addresses a major gap in existing datasets by providing a structured taxonomy of textile materials, divided into two primary categories: fibres and fabrics. Unlike most fashion-related datasets that often mix fibre and fabric labels or contain vague annotations, TextileNet provides a clearly defined and scientifically grounded label structure developed in collaboration with material science experts.
+TextileNet is a large-scale taxonomy-based dataset with the aim of facilitating textile material identification through deep learning methods. Originally proposed by Shu Zhong et al., TextileNet fills a significant gap that currently exists in datasets by providing a taxonomy of textile materials in a logical form covering two main branch of fibres and fabrics. In contrast to most datasets in the area of fashion that are poorly annotated and only provide mixed labels for fabric and fibre, or offer loose, ambiguous labels, TextileNet's labels are clearly defined with a scientific basis provided by material science researchers.
 
-The dataset is split into two parts: \textit{TextileNet-fibre} and \textit{TextileNet-fabric}, comprising 33 fibre labels and 27 fabric labels, respectively. The total dataset consists of approximately 760,949 images, sourced from Google Images and reconstructed fashion datasets like iMaterialist. The image collection process was carefully curated using keyword-based queries derived from the defined textile taxonomies, ensuring that the dataset reflects real-world clothing items while maintaining a consistent label scheme.
+TextileNet consists of two datasets: \textit{TextileNet-fibre} and \textit{TextileNet-fabric}, with 33 fibre labels and 27 fabric labels included in the datasets. The combined dataset has approximately 760,949 images collected from Google Images and reconstituted fashion datasets such as iMaterialist. The images were collected based on keywords from subsequent queries which were derived from the defined textile taxonomy ensuring that the data collected conveys the type of real-world clothing items, but consistently added images in the same area across the project archive.
 
 \begin{figure}[H]
     \centering
@@ -68,11 +125,9 @@ The dataset is split into two parts: \textit{TextileNet-fibre} and \textit{Texti
     \caption[Sample images from the TextileNet Dataset]{Sample images from the TextileNet Dataset: (Left) Denim, (Middle) Crepe, (Right) Satin.}
 \end{figure}
 
-What makes TextileNet particularly valuable is its taxonomy-based design. The fibre taxonomy includes natural, synthetic, and regenerated fibres such as cotton, wool, polyester, bamboo viscose, and milk casein. The fabric taxonomy, on the other hand, categorizes textiles based on their production method (woven, knitted, non-woven) and includes examples like denim, tweed, velvet, and jersey.
+The value of TextileNet lies in its taxonomy-based structure. The fibre taxonomy range from natural, synthetic, and regenerated fibres (eg cotton, wool, polyester, bamboo viscose and milk casein). While the fabric taxonomy provides categories based on the methods of production (woven, knitted, non-woven), each with its examples (denim, tweed, velvet, jersey).
 
-% The dataset has been validated using both Convolutional Neural Networks (CNNs) and Vision Transformers (ViTs), with baseline models achieving over 80\% top-5 accuracy on classification tasks. It not only serves as a resource for textile classification but also supports sustainability-focused goals by enabling traceability of garments back to their fibre and fabric origins—a key step in promoting textile circularity.
-
-Overall, TextileNet is suitable for training robust models that can identify complex fabric compositions in garments, supporting applications in retail, recycling, supply chain management, and sustainable fashion design.
+Overall, TextileNet is suitable for training efficient models for complex fabric composition recognition for both retail, recycling, supply chain application and as support to sustainable fashion design.
 
 \subsection{Existing Work}
 
