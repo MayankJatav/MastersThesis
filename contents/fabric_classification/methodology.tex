@@ -1,61 +1,54 @@
 \section{Methodology}
 
-Recent developments in deep learning have greatly enhanced image-based classification tasks, notably in fine-grained domains, like textile classification. Fabric classification is uniquely complicated by the similarity of textile types (e.g., distinguishing between cotton and polyester) and variations in light and blended textile compositions. Current methods that are based on Convolutional Neural Networks (CNNs) have achieved some success with regards to fabric classification in learning local texture and patterns in fabric \cite{hong2024research, kampouris2016fine}. However, CNNs are limited in capturing long-range dependencies, or contextual information, which may be necessary for fabric classification when textiles appear similar. 
+Recent advances in deep learning have drastically improved image classification, especially in domains with fine-grained visual features like textile categorization. The problem of fabric classification can become cumbersome when textile types possess significant similarities (e.g., cotton vs. polyester), fluctuating light conditions, and/or blended compositions. Synthetic measures which mainly characterize a fabric type using Convolutional Neural Networks (CNN) have exhibited decent performance in fabric categorization by capturing some of the local textures and patterns of the fabrics as classifiers \cite{hong2024research, kampouris2016fine}. However, while well-suited for a range of image-based applications, CNNs are often deficient in their ability to capture the long range dependencies context of data sets, which can be critical in discriminating visually similar materials. 
 
 Vision Transformers (ViTs) an advanced model that can model global relationships in image data through self-attention based mechanisms \cite{dosovitskiy2020vit} have shown strong performance in generic image recognition tasks, but only few researchers have recently used it for fabric classification \cite{chitra2023fabric}. 
 
-Driven by the pros and cons of both processes, this work proposes a hybrid deep learning model which includes CNN and ViT processes parallelly. The hybrid model leverages the \textit{local feature extraction capabilities of CNNs} and \textit{global context modeling capabilities of ViTs} to enhance classification accuracy from different textile fabric types. The proposed hybrid approach is based on the original insights from \textit{TextileNet} when the authors adopted multi-modal imaging (macro and OCT imaging) to enhance recognition of subtle structural differences found in textiles ~\cite{siam2023textilenet}.
+Driven by the pros and cons of both processes, this work proposes a hybrid deep learning model which includes CNN and ViT processes parallelly. The hybrid model leverages the \textit{local feature extraction capabilities of CNNs} and \textit{global context modeling capabilities of ViTs} to enhance classification accuracy from different textile fabric types. The proposed hybrid architecture of the model is based on the combined work of Chitra et al.~\cite{chitra2023fabric} and Zhong et al.~\cite{hong2024research}, which have shown promising results in fabric classification tasks.
 
 This methodology section explains the architecture associated with this proposed model, the role played by each part of the model, details the proposed feature fusion method, and briefly covers how the final label is produced. The proposed hybrid architecture supports end-to-end training and used rigorously labeled fabric datasets to test the architecture.
 
 \subsection{Convolutional Neural Networks (CNNs)}
 
-Convolutional Neural Networks (CNNs) have become a cornerstone in the field of computer vision due to their effectiveness in automatically learning hierarchical feature representations from raw image data. Originally popularized for tasks such as handwritten digit recognition and object detection, CNNs have also proven highly effective in domains where texture, shape, and local patterns play a significant role—such as textile and fabric classification.
+Convolutional Neural Networks (CNNs) are now one of the foundations in the computer vision space due to their ability to automatically learn hierarchical feature representations directly from raw image data. While, CNNs have been made famous for their extents in handwritten digit recognition and object detection, CNN architectures also have a striking record of performance in cases where texture, shape, and local pattern are paramount features of among categories - for example, textile type, or fabric categories.
 
-A CNN typically consists of a series of convolutional layers followed by non-linear activation functions (e.g., ReLU), pooling layers, and fully connected layers. The convolutional layers act as feature extractors, learning local filters that can detect edges, textures, and patterns at various levels of abstraction. As the network deepens, it builds increasingly complex and semantically rich representations, which are well-suited for distinguishing between different fabric types that may exhibit subtle differences in weave, fiber orientation, or surface reflectivity~\cite{simonyan2015vgg, lecun1998gradient}.
+Usually, a CNN consists of a series of convolutional layers and follows these layers with non-linear activation functions (including ReLU), pooling layers, and fully connected layers. The convolutional layers are feature extractors that learn local filters. The filters can learn to detect edges, textures, and patterns at successively higher levels of abstraction. Therefore the deeper you make the network, the more complex and semantically rich representations it builds, which can be applied for correctly classifying fabric-types that exhibit subtle differences in weave, fiber orientation, or surface reflectivity~\cite{simonyan2015vgg, lecun1998gradient}.
 
-In this work, a CNN-based stream is designed as part of a hybrid model, consisting of four convolutional blocks with progressively increasing output channels (8, 16, 32, 64). Each block applies a $3\times3$ convolution operation with a stride of 3, followed by a ReLU activation. This architecture efficiently reduces the spatial resolution while preserving essential texture and pattern information—a technique previously shown to be effective in textile classification tasks~\cite{hong2024research}.
+In this project, a CNN-based stream is proposed as a hybrid model, consisting of four convolution blocks where the number of output channels doubles after each convolution block (8, 16, 32, 64). Each block represents a 3×3 convolution with a stride of 3 and outputs a tensor with a ReLU activation specification. This architecture efficiently decreases spatial resolution while encoding important texture and pattern information; a method previously demonstrated to be effective for textile classification~\cite{hong2024research}.
 
-Studies such as by Kampouris et al.~\cite{kampouris2016fine} and Hong et al.~\cite{hong2024research} have demonstrated the success of CNNs in classifying fabric materials based on surface and structural characteristics. Furthermore, in practical applications, CNNs have been favored for their ability to generalize well to real-world textile images, including those captured under varying lighting conditions and camera settings.
+Investigations like those carried out by Kampouris et al.~\cite{kampouris2016fine} and Hong et al.~\cite{hong2024research} highlight the effectiveness of CNNs to accomplish fabric type classification based on characteristics including physical, surface and structural properties. Additionally, in a practical setting, CNNs are preferred due to their ability to generalize to real-world textile images with various lighting conditions and camera settings.
 
-While CNNs are powerful in learning local features, they are inherently limited in capturing global dependencies across spatial regions, which may affect performance when dealing with patterned fabrics. To address this limitation, CNNs are combined in this study with Vision Transformer (ViT) encoders, described in the following section, to capture both local and global representations of fabric structures.
+Although CNNs can learn features locally quite well, they are fundamentally limited in their ability to capture global dependencies across spatial locations. This may limit CNN performance when more patterned fabrics are encountered. In this research study, CNNs are combined with Vision Transformer (ViT) encoders, elaborated in the next section, to learn local and global representations of fabric structures.
 
 \subsection{Vision Transformers (ViTs)}
 
-Vision Transformers (ViTs) have emerged as a powerful alternative to convolutional architectures for image classification tasks. Unlike Convolutional Neural Networks (CNNs), which operate on local receptive fields, ViTs leverage self-attention mechanisms to model global relationships between different parts of an image. This makes them particularly suitable for applications like fabric classification, where understanding the spatial layout and contextual relationships between texture patterns is important~\cite{dosovitskiy2020vit}.
+Vision transformers (ViTs) have become a strong alternative to convolutional architectures for image classification tasks. ViTs avoid limiting themselves to local receptive fields, as CNNs do, in favor of a patient self-attention approach that allows for modeling of global relations between various parts of an image. This spatial modeling of context is key to a broad number of scenarios including fabric classification where both the spatial layout and contextual relations between textures patterns are relevant to the task~\cite{dosovitskiy2020vit}.
 
-A standard Vision Transformer operates by first dividing an image into fixed-size patches (e.g., $16 \times 16$ pixels), which are flattened and projected into a latent embedding space using a linear layer. These patch embeddings, along with a learnable class token and positional encodings, are passed into a stack of Transformer encoder layers. Each encoder layer consists of two main subcomponents:
+A typical Vision Transformer works by first splitting an image into fixed-size patches (e.g., 16×16 pixels), which are then flattened and linearly projected into a latent embedding space. The patch embeddings, along with the learnable class token and positional embeddings, are then sent to a stack of Transformer encoder layers. In every encoder layer, there are two main components:
 \begin{itemize}
-    \item \textbf{Multi-Head Self-Attention (MHSA):} Computes pairwise attention scores between patches, enabling the model to capture long-range dependencies.
-    \item \textbf{Feed-Forward Network (FFN):} A two-layer fully connected network with non-linearity (typically GELU), applied independently to each patch embedding.
+    \item \textbf{Multi-Head Self-Attention (MHSA):} This is the attention score that calculates scores pairwise across each of the patches and gives the ability to learn long-range dependencies.
+    \item \textbf{Feed-Forward Network (FFN):} This is a two-layer fully-connected network with non-linearity being applied to each patch embedding independently (GELU in most cases).
 \end{itemize}
 
-Layer normalization and residual connections are applied around both subcomponents to enhance training stability. The final output corresponding to the class token is used for classification purposes.
+Layer normalization and residual connections are applied to both components to increase stability in training. The final output of the class token is used for classification.
 
 In this study, the ViT branch consists of four sequential Transformer encoder layers, each of which processes the patch embeddings generated from the input image. The aim is to extract \textit{global and contextual features} that are particularly useful when dealing with fabrics that contain repeating patterns, folds, or blended fibers, where large-scale spatial context contributes to accurate classification~\cite{chitra2023fabric, siam2023textilenet}.
 
-While CNNs are inherently biased toward local feature extraction, ViTs offer greater flexibility by modeling relationships across the entire image without positional locality assumptions. This property makes them highly effective in fabric classification scenarios, where a fiber's spatial structure can influence its identification. Moreover, recent research shows that ViTs can outperform CNNs when trained on sufficiently large datasets or when used in hybrid systems~\cite{dosovitskiy2020vit, touvron2021training}.
+While CNNs are naturally biased toward local feature extraction, ViTs offer greater flexibility in modeling relationships across the entire image and typically do not make assumptions about positional locality. This flexibility makes them inherently suited for fabric classification scenarios where a fibers spatial structure could impact its identification. Additionally, recent research shows ViTs can outperform CNNs when trained on sufficiently large datasets or in hybrid systems ~\cite{dosovitskiy2020vit, touvron2021training}.
 
-By integrating a ViT stream in parallel with a CNN stream, this work aims to build a hybrid system capable of leveraging both local textures and global structure, resulting in a more robust and accurate fabric classification model.
+This work seeks to build a hybrid system that can utilize both local textures as well as global structure by adding a ViT stream along side the CNN stream to build a more accurate and robust fabric classification model.
 
 \subsection{Feature Fusion and Classification}
 
-Once the image has been processed independently by the Convolutional Neural Network (CNN) and Vision Transformer (ViT) branches, the resulting feature maps from both streams are merged to form a unified representation. This step is critical, as it combines the advantages of both local texture sensitivity (from CNN) and global contextual awareness (from ViT), enabling the model to make more informed predictions.
+After the image has been processed separately through the two streams (the Convolutional Neural Network (CNN) stream and the Vision Transformer (ViT) stream), the feature map from both streams is fused together to make a combined representation. This is an important part of the model process as it will take into account both local texture sensitivity (from CNN) and global context continuity (from ViT) in its decision-making process.
 
 \paragraph{Feature Stacking}
 
-The output of the final convolutional layer in the CNN stream and the final encoder layer in the ViT stream are first flattened and then concatenated along the feature dimension. This operation creates a stacked feature vector of dimension 1024, which encapsulates the most informative characteristics extracted from both branches. Feature-level fusion techniques such as concatenation are commonly used in multi-stream architectures to preserve complementary representations before classification~\cite{zhong2023textilenet, chitra2023fabric, xu2018multichannel}.
-
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.95\textwidth]{images/ModelDiagram.png}
-    \caption{The proposed hybrid CNN–ViT architecture for fabric classification.}
-    \label{fig:model-architecture}
-\end{figure}
+The output of the last CNN convolutional layer and the output of the last encoding layer from the ViT were flattened and concatenated across the feature dimension. This produced a stacked feature vector of dimension 1024 that contained the most important features from both streams of the model. Feature-level-fusion methods like concatenation are frequently used in multi-stream models to keep complementary features intact prior to classification~\cite{zhong2023textilenet, chitra2023fabric, xu2018multichannel}.
 
 \paragraph{Fully Connected Layer}
 
-The stacked feature vector is passed through a fully connected (FC) layer, which serves as the final transformation before classification. The FC layer acts as a dense classifier that maps the high-dimensional feature space into a 3-dimensional output, each corresponding to one of the fabric classes.
+The stacked feature vector is then passed through a fully connected (FC) layer which is the last transformation prior to classification. The FC layer works like a dense classifier, where it maps the high-dimensional feature space to a 3-dimensional space, which corresponds to three fabric classes.
 
 Mathematically, the output logits \( z \in \mathbb{R}^3 \) are computed as:
 \[
@@ -68,12 +61,19 @@ where:
     \item \( b_f \in \mathbb{R}^{3} \) is the bias term.
 \end{itemize}
 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.95\textwidth]{images/ModelDiagram.png}
+    \caption{The proposed hybrid CNN–ViT architecture for fabric classification.}
+    \label{fig:model-architecture}
+\end{figure}
+
 \paragraph{Softmax Classification}
 
-To obtain the final prediction, the output logits are passed through the Softmax activation function, which converts the raw scores into a probability distribution over the three fabric classes:
+To generate the final prediction decision, the output logits are softmaxed, to take the raw scores and convert the raw logits to a probability distribution over the three fabric classes:
 
 \[
 \text{Softmax}(z_i) = \frac{e^{z_i}}{\sum_{j=1}^{3} e^{z_j}}, \quad \text{for } i = 1,2,3
 \]
 
-This ensures that the output probabilities are non-negative and sum to 1. The class with the highest probability is selected as the final predicted label. The use of softmax is standard in multi-class classification tasks and is particularly effective when combined with cross-entropy loss during training~\cite{bishop2006pattern, goodfellow2016deep}.
+This is to ensure probabilities are positive, and their sum is 1. The highest probability is selected as the final predicted label. Softmax is the correct choice in multi-class tasks and is a strong performer, especially when used together with cross-entropy loss during training~\cite{bishop2006pattern, goodfellow2016deep}.
