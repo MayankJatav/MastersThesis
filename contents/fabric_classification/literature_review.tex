@@ -86,14 +86,14 @@ The dataset includes OCT scans of fabrics made of only cotton, wool, and polyest
 \begin{table}[H]
 \centering
 \caption{Class-wise image distribution of the Fabric OCT Dataset}
-\begin{tabular}{ll}
-\toprule
+\begin{tabular}{|l|c|}
+\hline
 \textbf{Fabric Type} & \textbf{Number of images} \\
-\midrule
+\hline
 Cotton & 495 \\
 Polyester & 448 \\
 Wool & 533 \\
-\bottomrule
+\hline
 \end{tabular}
 \end{table}
 
@@ -131,17 +131,17 @@ Overall, TextileNet is suitable for training efficient models for complex fabric
 
 \subsection{Existing Work}
 
-In recent years, deep learning has shown remarkable progress in image-based classification tasks across various domains, including textiles. Numerous research efforts have applied Convolutional Neural Networks (CNNs) and Transformer-based architectures to classify fabrics and textile compositions with increasing accuracy and robustness. The integration of transfer learning and custom dataset preparation has further improved the performance of these models, even when working with limited or domain-specific data.
+In recent years, deep learning has made incredible advancements in image-based classification tasks, including in textiles. There are several works that have explored Convolutional Neural Networks (CNNs) and vision transformer based architectures for classifying fabrics and textile compositions, achieving higher accuracy and robustness approaches. The incorporation of methods like transfer learning and dataset preparation can also assist the model's performance through lower accuracy losses, even when fabrics or textile compositions are not present in the original dataset, consisting of limited or domain specific images. 
 
-This section focuses on the review of selected research papers that have been implemented as part of this thesis. These papers represent different approaches to fabric classification—ranging from traditional CNN models to more advanced hybrid pipelines involving Vision Transformers and statistical techniques like Principal Component Analysis (PCA) and Linear Discriminant Analysis (LDA).
+This section is dedicated to reviewing a number of works that have been implemented where the results have been discussed as a component of this thesis. These papers show various methods for fabric classification, from a standard CNN to more advanced hybrid implementations utilising both Vision Transformers which develop capabilities to quickly compose hybrid pipelines with conventional statistical techniques literature including Principal Component Analysis (PCA) and Linear Discriminant Analysis (LDA).
 
-Each study has contributed significantly to the understanding of fabric classification challenges and techniques. By implementing and analyzing these works, we gain insights into the strengths and limitations of various deep learning models when applied to textile data. The outcomes from these implementations also provide the foundation for designing a more effective and efficient hybrid model tailored to the requirements of fine-grained fabric recognition.
+Each implemented study communicated various solutions to fabric classification issues and approaches. By executing and discussing each of the works, there will be further understanding for any potential challenges with classification of textile data using various deep learning models. The study results will also allow the collective and reasoning to create a more effective and efficient hybrid model.
 
 \subsubsection[A. Research on Classification of Clothing Fabrics Images Based on Convolutional Neural Network]{A. Research on Classification of Clothing Fabrics Images Based on Convolutional Neural Network~\cite{hong2024research}}
 
-In the paper \textit{“Research on Classification of Clothing Fabrics Images Based on Convolutional Neural Network”} by Ying Hong et al., the authors propose a deep learning-based approach to automatically classify clothing fabric types using image data. The main motivation behind the study is the growing need for intelligent fabric identification systems in clothing design and textile production, where manual classification can be time-consuming and inconsistent.
+In the paper \textit{"Research on Classification of Clothing Fabrics Images Based on Convolutional Neural Network"} by Ying Hong and others the authors take use of a machine learning construct to identify clothing fabric types from image data automatically. The authors understand that there is an increasing need for intelligent systems related to fabric identification, since fabric identification in clothing design and fabric production is often a manual process which can be time-consuming and inconsistent.
 
-The authors utilize a transfer learning strategy by fine-tuning the VGG-16 model, a well-established convolutional neural network architecture, pre-trained on the ImageNet dataset. The study focuses on a custom dataset composed of 15,000 high-resolution images representing 10 different types of clothing fabrics, including cotton, wool, silk, denim, and others. The images are captured under controlled lighting conditions to ensure consistency and minimize background noise.
+The authors utilize a transfer learning approach by fine-tuning the VGG-16 model, which is a pre-trained convolutional neural network architecture on the ImageNet dataset, to meet the study demands. An important note here is that the study uses a custom dataset which includes 15,000 images of previously unseen, high-quality images of 10 different types of clothing fabrics (cotton, wool, silk, denim, etc.). The images were taken in a controlled lighting environment as this was useful to keep lighting consistent as possible and reduce noise from the background.
 
 \begin{figure}[H]
     \centering
@@ -151,15 +151,15 @@ The authors utilize a transfer learning strategy by fine-tuning the VGG-16 model
     \caption[Model architecture - Hong et al.~\cite{hong2024research}]{Model architecture used for classification in Hong et al.~\cite{hong2024research}.}
 \end{figure}
 
-To enhance model generalization, the dataset undergoes data augmentation using techniques such as rotation, flipping, brightness adjustment, and the addition of Gaussian noise. These transformations help the network learn invariant features and reduce the risk of overfitting.
+Data augmentation is also implemented in this study to improve model generalization. Data augmentations included object rotation, flipping, brightness adjustment, and adding Gaussian noise. Data augmentations will force the network to learn invariant features to some extent and involved overfitting.
 
-The proposed model achieves a test accuracy of 99.73\%, demonstrating high performance in distinguishing between visually similar fabric types. The authors also emphasize the model’s fast convergence rate and robust classification capabilities, suggesting that convolutional networks, even with moderate architectural depth like VGG-16, can be effectively employed for practical fabric recognition tasks.
+The model was able to achieve the test accuracy of 99.73\% and also achieved a significant level of performance in differentiating between fabrics that visually appeared the same. The authors pointed out the fast convergence capability and robust classification ability of the proposed model, as well as the proposed convolutional networks, could possibly be applied to problems of practical importance in the clothing and fabric industry, even architectures with moderate depth like VGG-16.
 
-This work highlights the advantages of combining transfer learning with carefully curated datasets and simple preprocessing steps. It confirms that CNN-based methods are well-suited for fabric classification, especially when high-quality image data is available. Additionally, the study provides a foundation for future research to explore more advanced architectures or multi-modal data sources, such as combining texture with reflectance or depth information.
+This study demonstrates the advantages of incorporating transfer learning with well-curated datasets and simple preprocessing steps. It reaffirms the suitability of CNN-based approaches for fabric classification, particularly for high-quality image data. Furthermore, this study creates an opportunity for future work to explore advanced architectures or, for multi-modal data sources.
 
 \subsubsection[B. TextileNet: A Deep Learning Approach for Textile Fabric Material Identification from OCT and Macro Images]{B. TextileNet: A Deep Learning Approach for Textile Fabric Material Identification from OCT and Macro Images~\cite{siam2023textilenet}}
 
-In the paper \textit{“TextileNet: A Deep Learning Approach for Textile Fabric Material Identification from OCT and Macro Images”} by Siam et al., the authors explore the use of deep learning models for automatic fabric material identification using two distinct types of images: macro images and Optical Coherence Tomography (OCT) scans. This work addresses the challenge of accurately classifying fabrics such as cotton, wool, and polyester, which often appear visually similar to the human eye but have distinct structural properties.
+In Siam et al.'s paper \textit{"TextileNet: A Deep Learning Approach for Textile Fabric Material Identification from OCT and Macro Images"}, the authors explore the efficiency of deep learning models for automatic classification of fabric material types based upon macro images and Optical Coherence Tomography (OCT) images. This study is creating a solution for recognizing the class features of fabrics like cotton, wool, and polyester, all of which present very similar visual appearances to the human eye but have different structure, property, and resilience.
 
 \begin{figure}[H]
     \centering
@@ -169,21 +169,21 @@ In the paper \textit{“TextileNet: A Deep Learning Approach for Textile Fabric 
     \caption[Model architecture - Siam et al.~\cite{siam2023textilenet}]{Model architecture used for fabric classification in Siam et al.~\cite{siam2023textilenet}}
 \end{figure}
 
-The study introduces a classification pipeline based on transfer learning, utilizing five pre-trained convolutional neural networks: MobileNetV2, VGG16, ResNet101, InceptionV3, and ConvNextBase. These models were adapted and fine-tuned to classify textile samples based on their visual and structural features.
+This article presents a deep learning classification pipeline model based on transfer learning. The authors employed five different deep-learning convolutional neural networks: MobileNetV2, VGG16, ResNet101, InceptionV3, and ConvNextBase. The authors adapted and fine-tuned the five networks to classify textile sample types based on visual feature and structure.
 
-To improve image quality and enhance model performance, preprocessing techniques such as grayscale conversion, contrast enhancement (CLAHE), and sharpening were applied. All images were resized to a standard input size of 224×224 pixels before being fed into the models.
+The authors also applied image processing techniques for improved image quality and model performance, which included grayscale, contrast limiting adaptive histogram equalization (CLAHE), and sharpening effect. All images were also resized to the standard image input size size of 224 pixels high and 224 pixels wide.
 
-The results demonstrate that MobileNetV2 outperformed the other models, achieving 99.87\% accuracy on OCT images and 95.17\% accuracy on macro images. The significant difference in performance between the two image types highlights the added value of using OCT imaging for fabric classification, as it reveals deeper structural features not visible in surface-level macro images.
+The results indicate that MobileNetV2 outperformed all the models by a wide margin, with 99.87\% accuracy on OCT images and 95.17\% accuracy on macro images. The performance gap between the two was significant; this indicates the additional value of utilizing OCT imaging for the discrimination of fabrics as it provided insight into deep structural features that were not revealed with a surface-based macro image.
 
-This work shows that combining deep learning with high-resolution image modalities like OCT can lead to highly accurate and reliable fabric classification. The proposed pipeline is lightweight and efficient, making it suitable for real-world applications in the textile industry, such as automated material sorting, quality control, and textile recycling.
+This work shows that deep learning coupled with high-resolution image modalities such as OCT can offer not only a reliable but highly accurate soft fabric classification. Considering that the proposed bio-inspired pipeline is lightweight and efficient, it can be easily implemented in a multitude of real-world applications in the textile industry such as automated material sorting, automated quality control, and textile recycling.
 
 \subsubsection[C. Fabric Composition Identification using Fine-Tuned Vision Transformers]{C. Fabric Composition Identification using Fine-Tuned Vision Transformers~\cite{chitra2023fabric}}
 
-The study \textit{“Fabric Composition Identification using Fine-Tuned Vision Transformers”} by Chitra G M et al. presents a modern approach to fabric classification by leveraging the capabilities of Vision Transformers (ViTs). Unlike traditional methods that rely solely on convolutional features, this work incorporates transformer-based architectures to extract and understand both local and global features in fabric images. The main goal of the study is to identify fabric compositions, especially in scenarios where fabrics may contain blends of multiple fibres.
+The current study \textit{"Fabric Composition Identification using Fine-Tuned Vision Transformers"} by Chitra G M et al. shows an innovative and modern technique to classify fabric using Vision Transformers (ViTs) instead of solely relying on convolutional features as explored in the literature. This work captures and understands feature representations at both local and global scales via transformer based architectures for fabric images. Our main objective in this study is to identify fabric compositions given fabrics could take on a blend with multiple fibres as input. 
 
-The dataset used in the study consists of 937 images, each labeled with fabric compositions such as cotton, polyester, nylon, and silk. The images were captured using smartphone cameras, simulating a real-world setting where users or retailers may need to classify fabric types using accessible devices. This practical setup makes the proposed method more adaptable for mobile or on-site fabric recognition applications.
+In the dataset, 937 images were collected and labelled as multiple types of fabrics: cotton, polyester, nylon, silk etc. These images were captured using smartphone cameras, to represent realistic circumstances where users or retailers might classify fabric type using their frequently employed devices. The practical nature of this setup allows for the proposed approach to be used for a mobile or on-site fabric classification application.
 
-The proposed pipeline combines several stages. Initially, features are extracted from images using a fine-tuned ViT model. These features are then reduced using Principal Component Analysis (PCA) and further refined using Linear Discriminant Analysis (LDA) to enhance class separation. Finally, a Support Vector Machine (SVM) classifier is used for the final prediction. The authors also apply Platt scaling to calibrate the probability outputs of the SVM for better confidence estimation.
+The pipeline proposed comprises several steps; image features are first extracted from a fine-tuned ViT model. Features are then reduced with Principal Component Analysis (PCA), then subsequently, Linear Discriminant Analysis (LDA), which was applied later to reduce the features in order to enhance class separation before applying the classifier, Support Vector Machine (SVM). Furthermore, the authors applied Platt scaling on the SVM to gain an understanding of predicted probability outputs and associated confidence.
 
 \begin{figure}[H]
     \centering
@@ -193,6 +193,6 @@ The proposed pipeline combines several stages. Initially, features are extracted
     \caption[Model architecture - Chitra G M et al.~\cite{chitra2023fabric}]{Model architecture used for fabric composition identification in Chitra G M et al.~\cite{chitra2023fabric}}
 \end{figure}
 
-The model achieves an average F1-score of 0.87, along with a mean squared error (MSE) of 0.20 and a log-loss of 0.44. These results show that the pipeline is capable of reliably identifying both pure and mixed fabric types. Additionally, the use of SHAP (SHapley Additive exPlanations) values provides interpretability to the model by highlighting which parts of the image influenced the classification decision. This is especially useful in understanding how the model distinguishes between blended materials.
+The model has an average F1-score of 0.87, a mean squared error (MSE) value of 0.20, and log-loss of 0.44. These results show that the pipeline is effective in reliably identifing pure and mixed fabric types from images. Moreover, the authors use SHAP (SHapley Additive exPlanations) values to add further interpretability to the model, indicating the parts of the image that influenced the classification decision. This could be especially well suited to help understand where the model may be differentiating blended materials. 
 
-Overall, this work demonstrates the potential of Vision Transformers in fabric composition analysis. Its hybrid approach—combining ViTs with traditional dimensionality reduction and machine learning classifiers—offers a practical solution for real-world applications, including quality assurance, textile recycling, and online garment classification.
+In summary, this work demonstrates the potential of Vision Transformers for fabric composition evaluation. The hybrid method of combining ViTs with more conventional dimensionality reduction and machine learning classifiers can practically be implemented in practical settings in application situations ranging from quality control, textile recycling, and remote rugged garment identification.
