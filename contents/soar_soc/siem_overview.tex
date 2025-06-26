@@ -1,11 +1,11 @@
 \section{Data Flow in SOC}
 
-The process begins with the ingestion of logs and telemetry from diverse security monitoring tools such as \textbf{Network Detection and Response (NDR)}, \textbf{Web Application Firewall (WAF)}, and \textbf{User and Entity Behavior Analytics (UEBA)} systems. These components continuously monitor different facets of the organization’s infrastructure and provide essential telemetry to the SOC:
+The first step of the process is to pull in logs and telemetry from a variety of security monitors (NDR, WAF, and UEBA). Each of the monitoring tools consistently monitors an aspect of the organization infrastructure and makes its relevant telemetry information available to the SOC:
 
 \begin{itemize}[itemsep=0pt,parsep=0pt,topsep=0pt,partopsep=0pt]
-    \item \textbf{NDR (Network Detection and Response)}: Monitors and analyzes east-west and north-south network traffic to detect suspicious behaviors, advanced persistent threats, and lateral movement across the network.
-    \item \textbf{WAF (Web Application Firewall)}: Protects web applications by filtering and monitoring HTTP traffic. It blocks known attack patterns such as SQL injection, cross-site scripting (XSS), and unauthorized access attempts.
-    \item \textbf{UEBA (User and Entity Behavior Analytics)}: Uses behavioral models and machine learning to identify deviations from baseline activity. It helps detect insider threats, compromised accounts, and privilege escalation.
+    \item \textbf{NDR (Network Detection and Response)}: These systems monitor all directions of network traffic in and across the organization. They assist in recognizing unusual or suspicious activities, such as advanced attacks or movement of threats from one system to another system in the network.
+    \item \textbf{WAF (Web Application Firewall)}: These systems monitor HTTP traffic and provide filtering and monitoring protection to web applications and services. These systems will be able to proactively block known attacks, such as SQL injections, XSS, and unauthorized access attempts.
+    \item \textbf{UEBA (User and Entity Behavior Analytics)}: These systems build user behaviors models and machine learning around baseline activity and analysis deviations from that baseline. These systems assist in recognizing insider threats, compromised accounts, and privilege escalation.
 \end{itemize}
 
 \begin{figure}[H]
@@ -15,34 +15,34 @@ The process begins with the ingestion of logs and telemetry from diverse securit
     \label{fig:data-flow-soc}
 \end{figure}
 
-All the data collected from these systems is funneled into the \textbf{Security Information and Event Management (SIEM)} platform. The SIEM is responsible for aggregating logs, normalizing event data, correlating security events, and identifying potential incidents. It applies correlation rules and heuristics to generate alerts based on suspicious activities or known indicators of compromise. The SIEM serves as the central hub for visibility and detection across the SOC.
+All the data collected from these systems is funneled into the Security Information and Event Management (SIEM) system. SIEM is responsible for log aggregation, normalization of event data, correlation of security events, and threat detection and identification of potentially significant incidents. The SIEM will use correlation rules and heuristics to generate alerts for suspicious suspicious behavior and known indicators of compromise. The SIEM provides one central visibility/detection hub for the SOC. 
 
-These alerts, along with the enriched context from the SIEM, are then forwarded to the \textbf{Security Orchestration, Automation, and Response (SOAR)} platform:
-
-\begin{itemize}[itemsep=0pt,parsep=0pt,topsep=0pt,partopsep=0pt]
-    \item \textbf{SOAR}: Automates the triage and response process using predefined playbooks and workflows. It orchestrates actions across tools, facilitates enrichment (e.g., IP reputation checks), and enables both automated and manual responses.
-\end{itemize}
-
-As part of its enrichment process or during automated remediation, the SOAR platform may communicate with additional tools and services:
+The alerts, along with the enhanced context in the SIEM, is forwarded to the Security Orchestration, Automation, and Response (SOAR) system:
 
 \begin{itemize}[itemsep=0pt,parsep=0pt,topsep=0pt,partopsep=0pt]
-    \item \textbf{Threat Intelligence (e.g., VirusTotal)}: Provides contextual data about IP addresses, domains, file hashes, and URLs to enhance detection and validate alerts.
-    \item \textbf{Internal Tools (e.g., WAF, NDR)}: Used during automated response to isolate endpoints, block malicious traffic, or escalate incidents.
+    \item \textbf{SOAR}: Automating the triage and response process through playback and workflows. Orchestrating actions that happen through tools, enhancing (ex. IP reputation check), or taking action (ex. automated or manned response).
 \end{itemize}
 
-Finally, the SOAR platform generates a structured response, which may include a combination of automated actions and manual analyst decisions. The entire flow—from data collection to response—is tracked and logged to support auditing, compliance, and continuous improvement of SOC workflows.
+The SOAR may interface with tools when taking action or during the enrichment process:
+
+\begin{itemize}[itemsep=0pt,parsep=0pt,topsep=0pt,partopsep=0pt]
+    \item \textbf{Threat Intelligence (e.g., VirusTotal)}: Provides context for IP, domains, file hashes, and URLs to leverage for detection and validation of alerts.
+    \item \textbf{Internal Tools (e.g., WAF, NDR)}: These tools can be part of automated response to isolate endpoints, block malicious traffic or escalate incidents.
+\end{itemize}
+
+Finally, the SOAR platform creates a structured response which could consist of a series of automated actions and manual decisions by analysts. All this will be recorded in such a way that the full flow from data collection through response would be tracked to help with auditing, compliance, and continuous improvement of SOC activities.
 
 \section{Security Information and Event Management (SIEM) in SOC}
 
-A fundamental component of any Security Operations Center (SOC) is the \textbf{Security Information and Event Management (SIEM)} system, which serves as the data aggregation and correlation backbone of cybersecurity monitoring. SIEM platforms collect and analyze log data from across an organization’s digital infrastructure, including endpoints, servers, network devices, firewalls, intrusion detection systems, cloud services, and applications. The primary purpose of a SIEM is to provide \textit{real-time visibility into potential security threats} by aggregating disparate security logs, normalizing them, applying correlation rules, and generating alerts for further investigation by SOC analysts. According to Microsoft~\cite{microsoftsiem}, SIEM solutions are designed to help security teams detect attacks early, prioritize incidents, and comply with regulatory requirements by maintaining detailed audit trails and forensic data.
+A key part of any SOC (Security Operations Center) is the organization’s Security Information and Event Management (SIEM) which allows for data aggregation and correlation as part of the monitoring of cybersecurity. SIEM systems aggregate event and log data from all areas of an organization’s digital infrastructure (such as endpoints, servers, network devices, firewalls, intrusion detection systems, cloud infrastructure, and applications) and evaluate the data as a whole. The goal of a typical SIEM is to aggregate all the organization's relevant security logs into a system that allows it to determine the current state of security and to provide real-time visibility into potential security incidents. A SIEM can receive data from lots of different sources, normalize the data, apply correlation rules to the data, and generate alerts for SOC analysts to prioritize and investigate. Microsoft, ~\cite{microsoftsiem}, explains that SIEM solutions were developed primarily to help security teams deal with evolving cyberattacks sooner, enabling them to get ahead of a potentially damaging incident or intrusion and to remain compliant with regulations, by keeping detailed audit records and forensic information.
 
-In a typical SOC workflow, the SIEM acts as the \textit{initial source of alert generation}. It uses pre-defined correlation rules, statistical models, and sometimes machine learning to detect anomalies such as unusual user behavior, suspicious login patterns, or known indicators of compromise (IoCs). These alerts are then triaged by analysts who decide whether they represent true threats or false positives. Leading SIEM tools such as IBM QRadar, Splunk Enterprise Security, Microsoft Sentinel, and ArcSight offer customizable dashboards, threat detection use-cases, and built-in compliance reporting, making them well-suited to both enterprise and government cybersecurity needs.
+In a traditional SOC operational model, SIEM is the initial source of alert generation, so SIEM uses it own correlation rules, statistical models, and sometimes machine learning, to detect anomalies such as unusual user behavior, suspicious login patterns, and known indicators of compromise (IoCs). Alerts are triaged by analysts to determine whether they are true threats or false positives.  The leading SIEMtools (e.g., IBMQRadar, SplunkEnterprise Security, Microsoft Sentinel, ArcSight) generally provide customizable dashboards, threat detection use-cases, and compliant reporting together making them a great fit for enterprise and government cybersecurity needs.
 
-One key distinction to understand is the difference between \textbf{SIEM and SOAR}, as both platforms are often used in conjunction within a SOC. While SIEM systems focus on \textit{data collection, aggregation, and detection}, SOAR platforms concentrate on \textit{response orchestration, automation, and workflow execution}. SIEM is passive in that it alerts security teams to potential incidents; SOAR is active in that it can automatically take predefined actions—such as blocking an IP, sending notifications, or initiating a playbook—based on the data SIEM provides. As noted by Palo Alto Networks~\cite{paloalto}, SIEM answers the ``what happened?'' and ``where did it happen?'' questions, while SOAR answers ``what do we do about it?''
+Understanding the distinction between a SIEM and a SOAR is an important differentiator since both will be used in a SOC. SIEM is focused on data collection, aggregation, and detection. SOAR offers response orchestration, automation, and execution of the workflows. SIEM is passive in that it tells security teams about potential incidents; SOAR is active in that it can automatically take defined actions, including but not limited to blocking the IP, sending out notifications, or following a playbook, based on the data SIEM collected and aggregated. As noted by Palo Alto Networks~\cite{paloalto}, SIEM can answer “what happened?” or “where did it happen?”; whereas SOAR can answer “what do we do about it?”
 
-Furthermore, SIEM solutions typically operate at \textit{higher data volumes}, integrating with a wide array of systems and often ingesting terabytes of log data daily. This massive volume makes SIEMs excellent for \textit{long-term log retention and forensic investigations}, especially in regulated industries. However, this data-centric approach also leads to challenges such as \textit{alert fatigue} and \textit{false positives}, which SOAR platforms are designed to alleviate through automated triage, enrichment, and decision-making. As Gartner highlights, modern SOCs should not treat SIEM and SOAR as competing solutions, but rather as \textit{complementary systems} that, when integrated, can significantly improve the overall efficiency and responsiveness of cybersecurity operations~\cite{gartner-siem-soar}.
+Moreover, SIEM solutions, especially new-age SIEMs, tend to operate at a much higher volume of data, integrating with multiple systems and ingesting terabytes of log data daily. This data-centric approach has made SIEMs very strong for long-term log retention and forensic investigations, especially for companies that have regulatory obligations to preserve logs. On the other hand, SIEMs can be challenged by alert fatigue, false positives, and unnecessary investigation, all of which can be mitigated by combining the SIEM capabilities with SOAR capabilities to automate triaging, enrichment, and decision-making activities. As Gartner mentions, they recommend modern SOCs do not think of SIEM and SOAR as disparate or competing solutions, but rather as systems that, when combined, will enhance the efficiency and responsiveness of all cybersecurity operations~\cite{gartner-siem-soar}.
 
-In summary, SIEM is the eyes and ears of the SOC, providing centralized, real-time detection of security-relevant events across a wide range of digital assets. Its integration with SOAR platforms transforms this visibility into action, enabling scalable, consistent, and intelligent incident response. In high-stakes environments such as defense and national infrastructure, this combination of SIEM for detection and SOAR for orchestration forms the backbone of effective cyber defense.
+In conclusion, SIEM is the eyes and ears of the SOC as it offers centralized, real-time capture of security relevant events occurring within a wide variety of digital assets as it relates to the industry landscape. When SIEM collects and correlates the relevant data and the data is ingested by SOAR, the action can be scaled, automated, and driven by intelligence. In defense and national critical infrastructure, SIEM is the detection tool and SOAR is the orchestration tool. Together they form the core ability for effective cyber defense.
 
 \begin{table}[H]
 \centering
@@ -71,7 +71,7 @@ Challenges Addressed & Data visibility, compliance, threat correlation & Alert f
 
 \section{SIEM Incident Flow to SOAR}
 
-One of the most critical integrations within a Security Operations Center (SOC) is the connection between the SIEM and the SOAR platform. This integration enables a seamless transition from \textit{threat detection} (performed by SIEM) to \textit{incident response} (orchestrated by SOAR). A \textbf{SIEM incident} is typically an event or an alert that has been generated based on the correlation of log data received from various security tools such as firewalls, endpoint protection software, network devices, servers, and cloud environments. According to Microsoft~\cite{microsoftsiem}, the SIEM continuously collects and analyzes data from multiple sources, looking for known attack patterns, anomalies, and behavior that matches correlation rules or machine learning models. When such an event is detected, it is flagged as an incident and recorded with a detailed set of metadata.
+One of the most integral integrations with a Security Operations Center (SOC) is that of SIEM and the SOAR platform. The integration allows for the easy transition from threat detection (by a SIEM system) to response (orchestration provided by SOAR). A SIEM incident is typically an event or an alert that has been generated based on the event correlations of log data received from different security tools, e.g., firewall, endpoint protection software, network devices, servers, and cloud environments. As stated by Microsoft~\cite{microsoftsiem}, the SIEM looks for known attack patterns, anomalies, and user behavior based on correlation rules or machine learning models, as it continuously collects and analyzes the data from multiple sources. Once a SIEM flag has been raised for an event, it is then seen as an incident along with a complete set of metadata attached to the incident.
 
 A typical SIEM incident contains structured fields such as:
 
@@ -87,18 +87,18 @@ A typical SIEM incident contains structured fields such as:
     \item \textbf{Tactic / Technique (if mapped)}: MITRE ATT\&CK classification, if supported.
 \end{itemize}
 
-This incident data is then forwarded in real-time or near real-time to the \textbf{Security Orchestration, Automation, and Response (SOAR)} platform via APIs, message queues, or webhooks. As noted by Palo Alto Networks~\cite{paloalto}, the SOAR platform ingests the full context of the incident, enabling rapid enrichment, triage, and action.
+This incident data is then sent in real-time or near real-time to the Security Orchestration, Automation, and Response (SOAR) platform via APIs, message queues, or webhooks. As noted by Palo Alto Networks~\cite{paloalto}, the SOAR platform provides full incident details so that it can is quickly enriched, triaged and acted upon.
 
-Once the incident is received, the SOAR system begins the triage process. It may apply severity filters, check asset criticality, or consult external threat intelligence databases (e.g., VirusTotal, AbuseIPDB) to enrich the incident data. Based on this context, predefined playbooks are triggered. These playbooks can include actions such as:
+Upon receipt of the incident, the SOAR system begins triaging the incident. It might apply severity filters, check asset criticality, or leverage external threat intelligence repositories (e.g., VirusTotal, AbuseIPDB) to enrich incident data. Based on this context, the SOAR platform implements action playbooks. Actions could include:
 
 \begin{itemize}[itemsep=0pt,parsep=0pt,topsep=0pt,partopsep=0pt]
-    \item Notifying the responsible analyst or team
-    \item Blocking an IP address using a firewall or EDR tool
-    \item Isolating a host from the network
-    \item Gathering additional context from threat feeds or SIEM
-    \item Automatically resolving the alert if it is a known benign pattern
+    \item Notification of an analyst or team
+    \item Suspending access from the user's IP address using a Fiewall or an EDR
+    \item Isolate host from the network
+    \item Ask for additional context from the threat feeds or a SIEM
+    \item Resolve automatically if shown to be a known benign pattern.
 \end{itemize}
 
-Throughout this lifecycle, the SOAR platform maintains a case file containing the timeline of actions, analyst comments, and response outcomes. As Gartner notes, this automation enhances consistency and dramatically reduces the Mean Time to Respond (MTTR), which is critical in large-scale SOC environments~\cite{gartner-siem-soar}.
+During this process, the SOAR platform stores a case file with the timeline of actions, analyst comments and responses. This automation enhances consistency and greatly reduces the Mean Time to Respond (MTTR), particularly important at scale in a SOC, according to Gartner~\cite{gartner-siem-soar}.
 
-Thus, the SIEM-to-SOAR pipeline enables SOCs to convert raw detection into intelligent, actionable response while maintaining operational oversight and auditability.
+Therefore, the SIEM-to-SOAR pipeline allows SOCs to transform raw detections into intelligent, actionable response, allowing for operational oversight and auditability.
