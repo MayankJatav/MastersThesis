@@ -4,45 +4,45 @@ A Security Orchestration, Automation, and Response (SOAR) solution is commonly m
 
 Commercial standard SOAR solutions, like Splunk SOAR (formerly Phantom) and Palo Alto Cortex XSOAR, provide a myriad of modules for incident handling, playbook execution and third-party integration ~\cite{splunk, paloalto}. For example, Splunk SOAR has a visual playbook builder, a case management tool, over 300 prebuilt integration options (called apps), and a detailed REST API solution for system integration~\cite{splunk}. SimilSimilarly, Palo Alto XSOAR offers integrated case and incident visibility, MITRE ATT\&CK based incident tagging and a marketplace for streamlined extensibility ~\cite{paloalto}. Open-source options, including Shuffle, also offer many capabilities, as well as lightweight, easy-to-use visual automation experiences with pluggable REST actions and community built workflows~\cite{techtarget}.
 
-Despite minor variations in implementation, most SOAR platforms follow a modular architecture comprising common components. These include:
+Although there are some minor differences (in the details) on how SOAR will be implemented, the vast majority of SOAR tools leverage a modular architecture composed of reusable components. Often times these components include:
 
 \begin{itemize}
-    \item \textbf{Authentication and User Management:} Provides secure login, access control, and user provisioning mechanisms. Enterprise platforms often integrate with SSO, LDAP, or SAML providers for centralized identity management.
+    \item \textbf{Authentication and User Management:} The authentication and user management component provides authentication, access management and user provisioning. In enterprise SOAR platforms this module is often integrated with SSO, LDAP, or SAML identity providers for central identity management.
     
-    \item \textbf{Dashboard and Analytics:} Offers a centralized interface displaying incident trends, severity distributions, and operational metrics through visualizations such as pie charts, bar graphs, and time-series plots. Dashboards assist SOC managers in strategic decision-making and operational oversight~\cite{paloalto}.
+    \item \textbf{Dashboard and Analytics:} The dashboard and analytics component provides users with a single pane of glass that illustrates trends in incidents or use metrics that can be displayed in charts or graphs, such as pie charts, bar charts, and time series visuals. Dashboards are used by SOC managers when they need assistance in planning and operational oversight~\cite{paloalto}.
 
-    \item \textbf{Incident Management:} Acts as the core module for aggregating, reviewing, and handling alerts generated from SIEMs, threat intelligence feeds, or manual sources. Incidents may include metadata such as source IPs, attack types, severity, and MITRE ATT\&CK mappings.
+    \item \textbf{Incident Management:} The incident management component is the central module used for gathering, reviewing and taking action on alerts generated from SIEM, threat intelligence feeds, or manual sources. Incidents will often contain metadata such as source IPs, attack vectors, severity level, and mappings to the MITRE ATT\&CK framework.
 
-    \item \textbf{Integrations:} Refers to the ability to connect external security and IT tools (e.g., firewalls, EDRs, ticketing systems, threat intel platforms). These integrations are typically defined as “apps” or “connectors” that support actions through REST APIs, enabling bidirectional communication and orchestration~\cite{techtarget}.
+    \item \textbf{Integrations:} The integrations component refers to the ability to integrate with external security and IT tools (e.g., firewalls, EDRs, ticketing systems, threat intel platforms). Integrations are often expressed as “apps” or “connectors” or something similar that plug into the SOAR tool and enable an action like, for example, the ability to send an action to a ticketing system through a REST API, which can be an example of bi-directional communication and orchestration~\cite{techtarget}.
 
-    \item \textbf{Playbooks:} Define the logic for automated responses using a flow-based model. Playbooks are triggered by incident types or rules and execute predefined actions, including enrichment, containment, and notifications. They help ensure consistency and repeatability in incident handling~\cite{splunk, paloalto}.
+    \item \textbf{Playbooks:} Use a flow-based definition of the logic for an automated response. Playbooks can be triggered by the type of incident or rules. Playbooks allow executing actions, including notified and enrichment of information, containment, and notifications within a sequence. Playbooks can ensure consistency and repeatability in incident handling~\cite{splunk, paloalto}.
 
-    \item \textbf{Workflow Engine:} Provides a visual or low-code interface for linking actions and conditions into executable sequences. Some platforms (e.g., Shuffle) allow drag-and-drop creation of workflows, enhancing usability and reducing code dependency~\cite{techtarget}.
+    \item \textbf{Workflow Engine:} Provides a visual or low-code interface allowing actions and conditions to be linked in an executable sequence. Some SOAR platforms (i.e., Shuffle) allow workflows to be created with drag and drop actions in place to offer better usability with lower code reliance~\cite{techtarget}.
 
-    \item \textbf{Case Management and Audit Trails:} Enables analysts to track progress, document decisions, and maintain full auditability of response actions for compliance and post-mortem analysis. This is especially critical in regulated sectors such as finance and defense.
+    \item \textbf{Case Management and Audit Trails:} Allow analysts to monitor the situation, document their decisions, and maintain, full auditability of their response (potentially also fulfill compliance/classification requirements), and for use in a post-mortem analysis. Important in restricted sectors (finance and defence).
 
-    \item \textbf{MITRE ATT\&CK Integration:} Many modern SOAR platforms integrate with the MITRE ATT\&CK framework to classify incidents by tactics and techniques. This assists in strategic threat mapping and improves incident correlation and prioritization~\cite{mitre}.
+    \item \textbf{MITRE ATT\&CK Integration:} A large majority of modern SOAR platforms are now incorporating the MITRE ATT\&CK framework, which provides categorization of incidents based on tactics and techniques. This helps with the strategic mapping of threats, and helps incidents be correlated and prioritized for actions taken~\cite{mitre}.
 \end{itemize}
 
-Each of these components plays a crucial role in automating the incident lifecycle, reducing analyst fatigue, and accelerating mean time to respond (MTTR). While commercial platforms offer robust implementations, custom SOAR solutions can be tailored to meet specific organizational and regulatory requirements, such as air-gapped environments in national defense infrastructure.
+All of these elements are essential to automatically manage the incident lifecycle, reduce analyst fatigue, and decrease the mean time to respond (MTTR). Commercial platforms provide advanced implementations, but the custom SOAR solutions can be configured to satisfy distinct organizational and regulatory considerations, such as air-gapped environments in national defense infrastructures.
 
 \subsection{User Authentication}
 
-The user authentication implemented with the help of \textbf{Login and Signup} module serves as the entry point to the SOAR platform and is responsible for authenticating users and managing their access rights. Given the sensitivity of operations handled within a SOAR environment—including threat intelligence access, playbook execution, and incident response—this component must be designed with a focus on strong security and user management controls.
+The user authentication implemented with the help of \textbf{Login and Signup} module is the entry point into the SOAR platform, responsible for identifying users and managing their access rights. The operations that are undertaken in the SOAR environment are important and sensitive in nature (e.g. accessing threat intelligence, executing playbooks, incident responses); thus, the user authentication module must be secure and possess functionality that relates to user management.
 
-In the implemented system, users are required to register using a unique username and password, which are securely stored in the backend database. Passwords are hashed using a cryptographic hash function (e.g., SHA-256 or bcrypt) before storage, ensuring that raw credentials are never retained in plaintext. During login, submitted credentials are compared against hashed values in the database using secure comparison methods to prevent timing attacks.
+In the implemented system, users register with unique username and password that are stored securely in the backend database. Passwords are never written in plain text. When a user registers, their password will be hashed with a cryptographic hash function (like SHA-256 or bcrypt). When a user logs in, the login password is securely compared to the entries in the database (using secure comparison) to ensure that it is not vulnerable to timing attacks.
 
-The authentication mechanism is designed to be stateless, employing JSON Web Tokens (JWT) or session cookies to maintain user state post-login. Once authenticated, users receive a token that must be presented with subsequent API requests. This token-based approach is aligned with industry practices for scalable and secure session handling~\cite{paloalto, techtarget}.
+The authentication mechanism is stateless and uses JSON Web Tokens (JWT) or session cookies to persist the user state, post-login. After authentication, the user receives a token that must be produced with future APIs. This token based implementation is standard practice in the field, due to the scalability benefits and secure sessions~\cite{paloalto, techtarget}.
 
-Although the current implementation supports single-role authentication, the platform architecture allows for future integration of \textbf{Role-Based Access Control (RBAC)}. This would enable role-specific access to modules such as incident response, playbook management, and integrations, improving operational security and accountability.
+Currently, the implementation only supports single-role authentication, but the architecture allows for Role-Based Access Control (RBAC) in the future. This is useful when establishing role-based access of specialist teams to certain modules, like, incident response, playbook management, and integrations for operational security and accountability. 
 
-In contrast, enterprise-grade SOAR platforms such as \textbf{Splunk SOAR} and \textbf{Palo Alto XSOAR} support more advanced authentication features including Single Sign-On (SSO), integration with Lightweight Directory Access Protocol (LDAP), Security Assertion Markup Language (SAML), and multi-factor authentication (MFA)~\cite{splunk, paloalto}. While these features are essential in large organizations, lightweight and locally-hosted SOAR solutions may opt for simplified credential management to maintain performance and ease of deployment, especially in air-gapped or restricted environments like those found in defense organizations.
+In comparison, enterprise-grade SOAR platforms like Splunk SOAR, and Palo Alto (XSOAR) provide advanced authentication features, including Single Sign-On (SSO), integration to the Lightweight Directory Access Protocol (LDAP), Security Assertion Markup Language (SAML), and multi-factor authentication (MFA)~\cite{splunk, paloalto}. While these features are important to large organizations, lightweight and locally-hosted SOAR solutions may have uuid or token based credentials to provide an easier way of managing access to the solution, especially when handling deployed solutions in air gapped and restricted environments, like defense organizations.
 
-In summary, the Login/Signup module in the developed SOAR system provides a secure and extensible foundation for user authentication, ensuring that only authorized users can access the system's sensitive features. Its modular structure supports future enhancements such as access auditing, MFA, or integration with national identity providers.
+In summary, the Login/Signup module in the developed SOAR system provides both a secure and extensible platform for user authentication. It ensures that only authorized users have access to sensitive features in the system. The module is modular and may allow for future improvements, such as access auditing, multi-factor authentication (MFA), or integration with national identity providers.
 
 \subsection{Dashboard}
 
-The \textbf{Dashboard} serves as the central visualization hub of the SOAR platform, enabling SOC analysts and administrators to monitor the real-time status of the security environment. It offers a bird’s-eye view of ongoing incidents, historical trends, and response metrics. Dashboards are instrumental for operational awareness, strategic decision-making, and post-incident review.
+The \textbf{Dashboard} acts as the single visualization platform of SOAR providing SOC analysts and administrators with the capability to view the near real-time status of the security  environment. The Dashboard reduces the amount of span of control, identifying the situation  regarding ongoing incidents, trends with incidents over time, and response metrics.  Dashboards are effective for operational situational awareness, strategic planning and post-event analysis.
 
 \begin{figure}[ht]
     \centering
@@ -53,38 +53,38 @@ The \textbf{Dashboard} serves as the central visualization hub of the SOAR platf
 
 In the implemented SOAR system, the dashboard consists of multiple interactive visual components:
 
-\begin{itemize}
-    \item \textbf{Pie Charts:} Used to represent incident distribution by severity (e.g., low, medium, high, critical) and status (e.g., open, in-progress, mitigated, closed).
-    \item \textbf{Stacked Area Chart:} Visualizes the temporal trend of different incident categories, highlighting fluctuations and surges over time.
-    \item \textbf{Bar Graph:} Displays the top attack types or event categories based on frequency, helping prioritize detection rules and playbook tuning.
-    \item \textbf{Line Graph:} Shows overall incident volume over time, aiding in spotting recurring threat patterns or anomalies.
-    \item \textbf{Mitigated Incidents Table:} Presents a detailed list of incidents that have been resolved, including timestamps, severity, method of mitigation, and analyst notes.
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item \textbf{Pie Charts:} Represent incident breaks down by severity (e.g., low, medium, high, critical) and status (e.g., open, in-progress, mitigated, closed). 
+    \item \textbf{Stacked Area Chart:} Demonstrates the time-based trend of incidents in each category, allowing for incidences of peaks and valleys in reporting over time. 
+    \item \textbf{Bar Graph:} It displays the top attack types or event categories based on frequency, that helps in prioritizing the detection rules and playbook tuning.
+    \item \textbf{Line Graph:} Displays overall incident volume over time; useful for detecting recurring patterns that signify a threat or an anomaly in network behavior.
+    \item \textbf{Mitigated Incidents Table:} A table describing resolved incidents over time.  Each incident is listed with a timestamp, severity of the incident, method of mitigation, and notes from analyst.
 \end{itemize}
 
-These visualizations are dynamically generated from the backend database, ensuring that the SOC team has access to up-to-date information. The use of modern front-end technologies allows filtering, hovering, and drill-down capabilities, enhancing usability for both Tier 1 analysts and SOC managers.
+The visualizations are generated dynamically from the backend database so that the SOC team has the most current information. As new front-end technologies allow for filtering, hovering on the graphics, and drill-down capabilities, they make these more accessible for Tier 1 analysts and SOC managers.
 
-Comparatively, enterprise-grade SOAR platforms like \textbf{Splunk SOAR} and \textbf{Palo Alto Cortex XSOAR} also provide robust dashboard modules. Splunk SOAR’s dashboard includes customizable widgets that display automation coverage, playbook execution stats, case resolution times, and threat type breakdowns~\cite{splunk}. XSOAR offers executive summary views, threat intelligence overlays, SLA tracking, and integrations with MITRE ATT\&CK matrix visualizations~\cite{paloalto}. These features enable high-level stakeholders to monitor security posture, compliance adherence, and operational performance at scale.
+By comparison, enterprise-grade SOAR platforms like \textbf{Splunk SOAR} and \textbf{Palo Alto} Cortex XSOAR also feature strong dashboard modules. The Splunk SOAR dashboard includes customizable widgets, that show the automation coverage, stats on playbook executions, case resolution times, and breakdown of type of threat~\cite{splunk}. XSOAR provides executive summary views, threat intelligence overlays, SLA view and integrates with MITRE ATT\&CK matrix visualizations~\cite{paloalto}. These features assist high-level directors with monitoring the security posture, compliance compliance, and operational performance at scale.
 
-Open-source platforms such as \textbf{Shuffle}, while more lightweight, offer basic dashboarding features focused on workflow execution success rates, recent runs, and task failures~\cite{techtarget}. Although minimal in comparison to commercial counterparts, Shuffle’s dashboard can be extended using third-party tools like Grafana or Kibana for deeper visibility.
+Open-source platforms like \textbf{Shuffle} present a more lightweight example where the dashboard provides basic content and a within the dashboard presents execution success rates, most recent runs, and tasks that have failed~\cite{techtarget}. In comparison to commercial platforms mentioned earlier, it is minimal, but can be extended using third-party tools such as Grafana or Kibana for increased visibility.
 
-Incorporating a rich dashboard module is essential for enabling data-driven incident response. It allows the SOC to not only track key performance indicators (KPIs) like Mean Time to Detect (MTTD) and Mean Time to Respond (MTTR), but also identify bottlenecks, repetitive alerts, or insufficient playbook coverage. A well-designed dashboard turns data into actionable insight, promoting operational maturity and continuous improvement.
+The inclusion of a comprehensive dashboard module is an important function for supporting data-driven incident response. By implementing a dashboard, the SOC can monitor KPIs such as Mean Time to Detect (MTTD) and Mean Time to Respond (MTTR). It can also identify bottlenecks, repeatable alerts, and areas of playbook coverage inadequacies. A high-quality incident response dashboard converts data into useful, actionable insight that can help the SOC to improve operational maturity through continuous improvement.
 
 \subsection{Incidents}
 
-The \textbf{Incidents} module serves as the operational core of the SOAR platform, responsible for ingesting, displaying, and managing security alerts received from upstream systems such as Security Information and Event Management (SIEM) platforms. Once alerts are correlated and classified as actionable, they are stored in the incident management system, where analysts can interact with them through structured interfaces and automated workflows.
+The Incidents module is the operation core of the SOAR platform, and the direct consumer of alerts received directly from upstream systems like a Security Information and Event Management (SIEM) system. The alerts are correlated and determined to be actionable; they are stored as incidents in the incident management system where analysts can open and investigate incidents interactively through structured interfaces and automated workflows.
 
-In the implemented SOAR system, incidents are displayed in an interactive, filterable table. Each row in the table represents an individual incident, enriched with metadata fields such as:
+The SOAR system that has been implemented displays incidents in an interactive and filterable table. Each row describes a single incident, that may contain the following metadata fields:
 
 \begin{itemize}[noitemsep,topsep=0pt]
     \item \textbf{Timestamp:} The time at which the incident was triggered.
     \item \textbf{Attack Type:} Categorization based on the detected behavior (e.g., brute-force, phishing, malware).
     \item \textbf{Severity:} A rating (e.g., low, medium, high, critical) based on correlation rules or risk score.
-    \item \textbf{Source and Destination IPs/Hosts:} Network context of the event.
+    \item \textbf{Source and Destination IPs/Hosts:} Network location of the event.
     \item \textbf{Associated MITRE Technique IDs:} Tactic and technique labels for threat classification.
     \item \textbf{Status:} Indicates whether the incident is open, in progress, resolved, or closed.
 \end{itemize}
 
-Users can apply filters to view incidents by attack type, status, or severity, and initiate response actions directly from the interface. A key feature of this platform is the support for both \textbf{manual and AI-assisted incident status updates}. Analysts can choose to take manual action—such as marking an incident as mitigated—or they may delegate mitigation suggestions to a selected machine learning (ML) model, which recommends or executes responses based on historical resolution patterns.
+Users can use filters to select which incidents they want to view by attack type, status, or severity and take response actions from the interface itself. A unique feature of this platform is that it allows both manual and AI-assisted updates to incident status. Analysts have the option to either take manual actions, such as marking an incident as mitigated, or request mitigation recommendations stepped out by a selected ML model, which recommends based on past resolutions. 
 
 \begin{figure}[ht]
     \centering
@@ -93,30 +93,28 @@ Users can apply filters to view incidents by attack type, status, or severity, a
     \label{fig:xsoar-incidents}
 \end{figure}
 
-This AI-based mitigation capability is a significant enhancement over many commercial SOAR platforms, where AI and ML integration is either minimal or handled externally. For example, while \textbf{Splunk SOAR} provides advanced correlation and playbook automation, it does not natively include ML model selection or self-learning response recommendation without integration with third-party platforms~\cite{splunk}. Similarly, \textbf{Cortex XSOAR} enables data enrichment and contextual awareness, but machine learning functionalities often rely on Palo Alto’s Threat Intelligence or external sources~\cite{paloalto}.
+This AI-assisted mitigation capability surpasses the present capabilities of many commercial SOAR platforms, where features include AI-ML to some extent, or is at least limited as an external integration; examples include Splunk SOAR, which provides advanced correlation and playbook automation, but does not inherently provides for ML model selection for selecting self-learned response, without having integrated third-party platforms~\cite{splunk}; and Cortex XSOAR provides for data enrichment and contextual awareness, but with its machine learning features, relies on Palo Alto’s Threat Intelligence, or other external resources~\cite{paloalto}.
 
-Open-source SOAR tools like \textbf{Shuffle} provide basic incident ingestion and display via webhook integrations, but lack built-in enrichment, severity scoring, or AI-assisted resolution workflows~\cite{techtarget}. The presented SOAR system thus bridges this gap by offering native ML model selection for predictive mitigation, making it suitable for organizations that want to experiment with or deploy AI-driven security automation.
-
-In addition, the incident module supports direct association with MITRE ATT\&CK techniques, enabling targeted response and heatmap generation. When combined with the playbook engine, this allows the automatic execution of workflows based on specific tactics or techniques observed in the incident.
+Open-source SOAR tools such as Shuffle provide a rather coarse incident ingestion and display process from webhook integrations, but without native enrichment, severity-scoring, or AI-assisted resolution workflows~\cite{techtarget}. The presented SOAR system thus bridges this gap by offering native ML model selection for predictive mitigation, making it suitable for organizations that want to experiment with or deploy AI-driven security automation.
 
 In conclusion, the incident module in the custom SOAR platform not only visualizes threat data but actively integrates with intelligence, analytics, and automation components. Its hybrid approach—combining analyst control with AI support—ensures scalability, consistency, and reduced mean time to respond (MTTR) in SOC operations.
 
 \subsection{Integrations}
 
-The \textbf{Integrations} module is a foundational component of any SOAR platform, enabling connectivity and orchestration across a diverse ecosystem of cybersecurity tools and services. It allows the platform to interact with third-party systems—such as firewalls, endpoint protection platforms (EPP/EDR), threat intelligence feeds, vulnerability scanners, cloud providers, and ticketing systems—through standardized API-based interfaces. This connectivity is essential to execute automated actions during playbook execution or manual analyst workflows.
+The Integrations module is the building block of any SOAR platform allowing it to connect and orchestrate a diverse set of cyber security tools and systems within an ecosystem. It enables the platform to communicate with other vendor tools/resources (i.e. firewall, EPP/EDR, threat intelligence feeds, vulnerability scanners, cloud providers, ticketing systems, etc.) using standardized API interfaces. This connectivity is important to allow an automated action to be performed during the execution of a playbook or as part of manual analyst workflow. 
 
-In the implemented SOAR platform, integrations are managed via a dedicated interface that allows the creation, modification, and deletion of both \textbf{Apps} and their corresponding \textbf{Actions}:
+In the implemented SOAR platform, integrations are managed through a interface that provides the option of creating, modifying and deleting Apps and Actions:
 
-\begin{itemize}
-    \item \textbf{App:} Represents an external service or tool. Each app includes fields such as \textit{name}, \textit{description}, and \textit{API token} or other required authentication information.
-    \item \textbf{Action:} Represents a specific operation that the app can perform. Each action includes an \textit{action\_name}, the \textit{HTTP method} (GET, POST, PUT, DELETE), and the \textit{API endpoint URL}.
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item \textbf{App:} Represents an internal or external service or tool. Each app in the platform has fields for name, description, and API token.
+    \item \textbf{Action:} Represents a specific action that can be performed by the app. Each action has fields for action name, HTTP method (GET, POST, PUT, DELETE), and the associated API endpoint URL.
 \end{itemize}
 
-These definitions allow non-technical users to register integrations and reuse them across multiple workflows without writing code. Once configured, the actions can be triggered from playbooks or manually executed from the incident module. For example, a configured VirusTotal app might have actions like `scan\_url`, `check\_hash`, or `get\_report`, which can be called during threat enrichment.
+The defined actions allow non-technical users to register integrations and use them across various workflows without writing code. Once configured, the actions can either be triggered via playbooks, or performed manually from the incident module. For example, a configured VirusTotal app may have actions like ‘scan\_url‘, ‘check\_hash‘, or ‘get\_report‘, and can be invoked during the threat enrichment stage.
 
-Compared to commercial solutions, this modular app-action model is aligned with industry best practices. \textbf{Splunk SOAR}, for instance, provides over 300 built-in integrations known as “apps,” each containing a set of pre-configured actions. These can be used in visual playbooks and extended via custom Python scripting~\cite{splunk}. Similarly, \textbf{Cortex XSOAR} organizes integrations into packs that include playbook tasks, data models, and API-based connectors~\cite{paloalto}. It also supports live configuration from the user interface and centralized credential management.
+Compared to commercial solutions, this modular app-action model is aligned with industry best practices. Splunk SOAR, for instance, provides over 300 built-in integrations known as “apps,” each containing a set of pre-configured actions. These can be used in visual playbooks and extended via custom Python scripting~\cite{splunk}. Similarly, Cortex XSOAR organizes integrations into packs that include playbook tasks, data models, and API-based connectors~\cite{paloalto}. It also supports live configuration from the user interface and centralized credential management.
 
-Open-source platforms such as \textbf{Shuffle} follow a comparable model by offering REST-based integrations that can be created or imported from community repositories. Shuffle also allows users to write lightweight custom apps in Python or JavaScript, which are run in sandboxed Docker containers~\cite{techtarget}.
+Open-source platforms such as Shuffle follow a comparable model by offering REST-based integrations that can be created or imported from community repositories. Shuffle also allows users to write lightweight custom apps in Python or JavaScript, which are run in sandboxed Docker containers ~\cite{techtarget}.
 
 \begin{figure}[ht]
     \centering
@@ -125,9 +123,7 @@ Open-source platforms such as \textbf{Shuffle} follow a comparable model by offe
     \label{fig:shuffle-soar-apps}
 \end{figure}
 
-One of the distinguishing features of the custom SOAR platform developed during this internship is the ability to define integrations dynamically through the web interface, without requiring backend changes or container redeployments. This approach supports rapid integration with custom in-house tools, threat intelligence APIs, or security appliances used in air-gapped and defense environments. Since each integration is abstracted into reusable action objects, users can visually link them into workflows using the workflow builder module.
-
-The integrations module not only enhances automation but also ensures scalability and modularity in security operations. By treating each external service as a pluggable app with configurable actions, the platform adheres to microservice principles, making it extensible for future orchestration needs.
+The integrations module not only increases automation, but provides scalability and modularity in security operations. Each external service can be treated as a pluggable app with configurable actions, so the platform follows the principles of microservices, giving future orchestrations extensibility.
 
 \subsection{Playbooks}
 
