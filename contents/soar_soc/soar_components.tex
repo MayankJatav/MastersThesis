@@ -127,55 +127,53 @@ The integrations module not only increases automation, but provides scalability 
 
 \subsection{Playbooks}
 
-The \textbf{Playbooks} module is the automation engine of the SOAR platform, enabling structured and repeatable responses to detected security incidents. A playbook is a predefined sequence of steps—both automated and manual—that governs how an incident should be investigated and remediated. Playbooks are essential for ensuring consistency, reducing analyst fatigue, and minimizing human error in high-volume environments.
+The Playbooks module acts as the automation engine for the SOAR platform, allowing structured, repeatable responses to security incidents, once detected. A playbook is the definition of the steps (both automated and manual) involved in how to investigate and remediate an incident. Playbooks are advantageous because they assist with consistency and stains by reducing analyst fatigue and reducing human mistake in a heavy volume environment.
 
-In the implemented SOAR system, playbooks are defined, managed, and executed via an intuitive user interface. The module supports the following key features:
+In the SOAR system that was implemented, playbooks can be defined, managed, and construed from an intuitive user interface. The nucleus features of the module are:
 
 \begin{itemize}[noitemsep,topsep=0pt]
-    \item \textbf{Add/Edit/Delete Playbook:} Users can create new playbooks or modify existing ones to align with updated procedures, threat types, or compliance requirements.
+    \item \textbf{Add/Edit/Delete Playbook:} The user can create playbooks, and/or edit or change playbooks as the procedures or types of threat and/or compliance change.
     
-    \item \textbf{MITRE ATT\&CK Association:} Each playbook can be linked to one or more MITRE ATT\&CK Technique IDs. When an incoming incident matches a technique identifier, the corresponding playbook is automatically triggered. This enables context-aware, tactic-specific response automation~\cite{mitre}.
+    \item \textbf{MITRE ATT\&CK Association:} Each playbook can be associated with one or more MITRE ATT\&CK Technique IDs. The playbook is automatically initiated in response to incoming incidents tagged with a technique identifier. This has the added benefit of allowing for context-aware, tactic-specific response automation~\cite{mitre}.
     
-    \item \textbf{Workflow Linking:} Playbooks are tied to workflows—graphical representations of the actions and conditions to be executed in sequence. This decouples the logical decision-making layer (playbooks) from the execution engine (workflow), promoting reuse and flexibility.
+    \item \textbf{Workflow Linking:} Playbooks are associated with workflows—graphical flows that indicate the sequence of actions and conditions to instantiate. This allows users to have the logical decision-making layer (playbooks) and execution engine (workflow) decoupled, promoting reusability and flexibility.
 \end{itemize}
 
-The logic defined within a playbook may include various response actions, such as:
+The logic defined within a playbook may include other response actions, such as:
 \begin{itemize}[noitemsep,topsep=0pt]
-    \item Enriching indicators using threat intelligence sources (e.g., WHOIS, VirusTotal).
-    \item Blocking malicious IPs or URLs using integrations with firewalls or web gateways.
-    \item Isolating endpoints using EDR tools.
-    \item Creating tickets or notifications via ticketing systems or email services.
+    \item Enriching indicators with threat intelligence sources (e.g., WHOIS, VirusTotal).
+    \item Blocking malicious IP addresses or URLs by integrating with firewalls or web gateways.
+    \item Isolating endpoints using an EDR (e.g., Crowdstrike or DarkTrace).
+    \item Opening tickets or notifications through ticketing systems or email platforms.
 \end{itemize}
 
-Each step can include conditions, triggers, and optional human approvals, allowing playbooks to function in fully automated or semi-automated modes.
+Each of the steps may have conditions, triggers, and optional human approvals that allow playbooks to operate in fully automated or semi-automated modes.
 
-This implementation follows the design philosophy of enterprise-grade SOAR platforms. For instance, \textbf{Splunk SOAR} allows users to build playbooks using a visual editor, combining decision blocks, automation tasks, and manual inputs~\cite{splunk}. Playbooks in Splunk SOAR are Python-based under the hood but are abstracted for low-code use. \textbf{Palo Alto Cortex XSOAR} extends this concept with its drag-and-drop playbook editor and built-in task types, enabling advanced branching logic and error handling~\cite{paloalto}.
+This way of implementing uses the design philosophy of enterprise-level SOAR platforms; for example, Splunk SOAR supports building playbooks with a visual editor that utilizes decision blocks, automation tasks, and manual inputs~\cite{splunk}. Although Splunk SOAR playbooks use Python internally, they are abstracted to low-code. Cortex XSOAR by Palo Alto extends this design pattern using a drag-and-drop playbook editor with task types to allow users to implement sophisticated branching logic and error handling ~\cite{paloalto}.
 
-Open-source SOAR platforms such as \textbf{Shuffle} also provide playbook editors with visual flow-based design. However, they are typically limited in features such as conditional branching, versioning, and advanced user inputs~\cite{techtarget}. While sufficient for basic automation, they may require custom scripting for more complex response procedures.
+Open-source SOAR platforms such as Shuffle provide their own playbook editor with a visual flow-based design as well, but typically have lesser or unsupported functionality like conditional branching, versioning, and memory of user inputs~\cite{techtarget}. Although these types of playbooks are sufficient for basic automated responses, SOAR developers would most likely need to resort to custom scripting scenarios for complex response procedures.
 
-A unique aspect of the custom SOAR platform presented in this work is its ability to associate playbooks with ATT\&CK techniques directly within the interface, thereby enabling seamless tactic-level incident automation. This facilitates faster and more accurate responses, especially in SOC environments aligned with the MITRE ATT\&CK framework for threat modeling and incident classification.
-
-Overall, the playbook module is instrumental in operationalizing security response strategies. It encapsulates institutional knowledge, codifies best practices, and ensures that each incident is handled with appropriate urgency and consistency.
+All in all, the playbook module is extremely valuable to enact security response frameworks and operationalizing those frameworks. It also effectively consolidates institutional knowledge, codifies best practices in security response practice, and ensures that individual incidents are dealt with the fast and to the standard that is required of any Critical Infrastructure organization.
 
 \subsection{Workflows}
 
-The \textbf{Workflow} module acts as the execution engine of the SOAR platform, responsible for carrying out the actions defined within playbooks. While playbooks provide the logical structure and decision-making rules for incident response, workflows are the operational blueprints that determine how tasks are executed in sequence—visually represented as directed graphs composed of nodes (apps/actions) and edges (transitions).
+The Workflow module is the execution engine of the SOAR platform. The work of the playbooks will be executed through a workflow. For playbooks, the logical structure and decision making rules will be created for the playbook for an incident response, whereas workflow documents will be the operational plan to outline how the tasks will be executed sequentially, visualized as a directed graph with nodes (apps/actions) and edges (transitions).
 
-In the developed SOAR platform, workflows are created and managed using a visual, drag-and-drop interface. Key features of the module include:
+In the SOAR platform, workflows were created and managed through a drag-and-drop visual interface, and the following characteristics of the module include:
 
-\begin{itemize}
-    \item \textbf{Create/Edit/Delete Workflows:} Users can construct workflows from scratch or modify existing ones using a canvas-based editor.
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item \textbf{Create/Edit/Delete Workflows:} Users could develop a workflow from scratch or edit a workflow using a canvas-based editor.
     
-    \item \textbf{Node-Based Design:} Each node represents an app configured via the Integrations module. Nodes may expose one or more actions (e.g., scan file, block IP, query URL).
+    \item \textbf{Node-Based Design:} Each node denotes an app configured via the Integrations module. A node may expose one or more actions (e.g., scan file, block IP, query URL).
     
-    \item \textbf{Drawable Edges:} Nodes are connected using directional edges to define the order of execution. Conditional routing and branching logic can be visually represented by linking multiple nodes based on success, failure, or other states.
+    \item \textbf{Drawable Edges:} The nodes are connected using directional edges to define the order of execution. In addition, conditional routes and branching logic may be represented graphically by connecting multiple nodes dependent upon success, failure, or other states.
     
-    \item \textbf{Execution List:} A log of previously executed workflows is maintained, including execution status, incident ID, trigger source, timestamps, and logs for each step.
+    \item \textbf{Execution List:} A list of previously initiated workflows is maintained, with the execution status, incident ID, trigger source, timestamps and logs of each step being archived.
 \end{itemize}
 
-This approach provides SOC analysts with a low-code environment to model complex incident response logic visually, making it accessible to both technical and non-technical users. Analysts can reuse workflows across different playbooks, promoting modularity and standardization in the response process.
+This way, the SOC analyst can leverage a low-code workspace by graphically modeling complex incident response logic, which makes it accessible both technical and non-technical users. Analysts can also reuse the workflows in numerous playbooks, including the ability for modularity and standardized, repeatable workflows in response procedures.
 
-The architecture of the workflow module is conceptually similar to what is offered by commercial SOAR platforms. For example, \textbf{Splunk SOAR} includes a visual playbook editor where each block represents a discrete action or condition, forming a directed flowchart~\cite{splunk}. Actions can be executed in sequence or in parallel, with support for user prompts, decision gates, and failure handling.
+The architecture of workflow module is essentially the same as that offered by the commercial SOAR platforms. For example, Splunk SOAR supports a visual playbook editor, where each square block represents a discrete action or condition, creating a directed flowchart~\cite{splunk}. Actions can take place as either sequential or parallel, include support for user prompts, decision gates, and failure handling.
 
 \begin{figure}[ht]
     \centering
@@ -184,33 +182,25 @@ The architecture of the workflow module is conceptually similar to what is offer
     \label{fig:shuffle-soar-workflow}
 \end{figure}
 
-\textbf{Palo Alto Cortex XSOAR} extends this paradigm by offering sophisticated conditional flows, loops, exception management, and variable sharing across tasks~\cite{paloalto}. Its workflow engine supports both automation tasks and human-in-the-loop interactions (e.g., approval requests), enabling hybrid response models.
+Palo Alto Cortex XSOAR expands this by providing conditional flows, loops, exception handling, and variable sharing, across tasks~\cite{paloalto}. Its workflow engine enables automation tasks and human-in-the-loop interactions (e.g., approval requests), providing hybrid response models.
 
-Open-source SOAR platforms such as \textbf{Shuffle} are also designed around workflow automation, with a visual interface that allows drag-and-drop placement of integration actions, conditional paths, and data variables~\cite{techtarget}. However, Shuffle workflows typically focus on simplicity and ease of scripting, with fewer built-in safeguards or error-handling mechanisms compared to enterprise-grade systems.
+Open source SOAR platforms, like Shuffle, are also based on workflow automation and provide a visual interface for drag-and-drop placement of integration actions, conditional paths, and data variables~\cite{techtarget}. Shuffle workflows typically reflect a preference for simplicity and ease of scripting by providing fewer limitations, safety guards, and error-handling capabilities relative to enterprise-class systems.
 
-A distinctive aspect of the workflow module in the custom SOAR platform is its tight coupling with the Integrations and Playbook modules. Users can dynamically select app actions while building workflows, and these workflows can be associated with specific playbooks tied to MITRE ATT\&CK techniques. This modularity allows for flexible reuse, rapid prototyping, and seamless expansion as new integrations and response use cases are added.
-
-Overall, the workflow module transforms logical response strategies into executable sequences, providing the backbone for effective security automation in the SOAR architecture. It bridges the gap between decision logic and operational execution, ensuring that incident handling is both efficient and auditable.
+Overall, the workflow module turns logical response strategies into executable sequences, and establishes the structure for managing security automation as a part of the SOAR. The workflow module closes the loop from decision logic to operational execution in incident handling with regard to efficiency and auditability.
 
 \subsection{MITRE ATT\&CK Module}
 
-The \textbf{MITRE ATT\&CK} (Adversarial Tactics, Techniques, and Common Knowledge) module integrates the widely adopted threat modeling framework into the SOAR platform to enhance contextual awareness, incident classification, and strategic response alignment. ATT\&CK provides a structured knowledge base of adversary behaviors, organized into tactics (goals) and techniques (methods), allowing SOC teams to understand the “why” and “how” behind detected threats~\cite{mitre}.
+The MITRE ATT\&CK(Adversarial Tactics, Techniques, and Common Knowledge) module embeds the widely used threat modeling framework into the SOAR platform for enriched contextual awareness, incident classification, and response strategy alignment . ATT\&CK provides a canvas of an adversary's actions structured by tactics (goals) and techniques (procedures), allowing SOC teams to build the "why" and "how" behind identified threats~\cite{mitre}.
 
-In the developed SOAR system, the MITRE ATT\&CK module offers a visually interactive matrix interface modeled after the official ATT\&CK Enterprise Matrix. Its key features include:
+In the implemented SOAR system, the MITRE ATT\&CK module offered a visually interactive matrix interface of the ATT\&CK Enterprise Matrix. The key features of the ATT\&CK module include:
 
 \begin{itemize}
-    \item \textbf{Technique-Based Filtering:} Each cell in the matrix corresponds to a specific ATT\&CK technique. Clicking on a cell filters and displays the list of incidents in the system that are mapped to that technique, providing quick threat attribution.
+    \item \textbf{Technique-Based Filtering:} Each cell in the matrix represents an ATT\&CK technique, which allows the user to filter and provide a list of incidents mapped to the technique with a click.
     
-    \item \textbf{Heatmap Visualization:} A color-coded heatmap overlays the matrix based on the number of incidents associated with each technique. Colors range from white (no incidents) to blue (low frequency) to red (high frequency), visually highlighting the most frequently observed techniques within the environment.
+    \item \textbf{Heatmap Visualization:} A color heatmap will overlay the matrix to show the mapping of incidents to techniques. The heatmap will show colors from white (absence of incidents), blue (low observed frequency of incidents), and red (high observed frequency of incidents) to visually observe the most frequently observed technique in the environmental.
     
-    \item \textbf{Technique-Incident Association:} During incident ingestion, techniques can be mapped automatically or manually, linking each incident to its corresponding ATT\&CK entries. This classification is leveraged by playbooks to determine which workflows to trigger.
+    \item \textbf{Technique-Incident Association:} When incidents are ingested, the techniques can be mapped automatically or manually to links each incident to a corresponding set of ATT\&CK entries. This classification can be utilized to help develop the investigation.
 \end{itemize}
-
-The integration of MITRE ATT\&CK in SOAR platforms serves multiple purposes: it enhances situational awareness, supports threat hunting, and allows for better alignment of detection and response strategies with real-world adversary tactics. Furthermore, it provides a foundation for behavioral analytics, red teaming, and compliance reporting.
-
-Commercial SOAR solutions such as \textbf{Palo Alto Cortex XSOAR} offer built-in support for ATT\&CK. Incidents can be tagged with tactics and techniques, and dashboard modules allow visualization of coverage and attack surface exposure~\cite{paloalto}. XSOAR also supports threat intel enrichment using ATT\&CK metadata and enables filtering and reporting based on technique distributions.
-
-\textbf{Splunk SOAR} does not natively provide a full ATT\&CK matrix interface, but integrations with the Splunk Security Essentials app or external visualizations (e.g., MITRE ATT\&CK Navigator) allow SOCs to map playbooks and detections to tactics and techniques~\cite{splunk}.
 
 \begin{figure}[ht]
     \centering
@@ -219,8 +209,14 @@ Commercial SOAR solutions such as \textbf{Palo Alto Cortex XSOAR} offer built-in
     \label{fig:mitre-attck-matrix}
 \end{figure}
 
-Open-source platforms such as \textbf{Shuffle} generally do not include a dedicated ATT\&CK interface out-of-the-box, though users can manually tag incidents and build custom visualizations using third-party tools like ATT\&CK Navigator, Kibana, or D3.js-based dashboards~\cite{techtarget}.
+The integration of MITRE ATT\&CK in SOAR platforms serves multiple purposes: it enhances situational awareness, supports threat hunting, and allows for better alignment of detection and response strategies with real-world adversary tactics. Furthermore, it provides a foundation for behavioral analytics, red teaming, and compliance reporting.
 
-The custom SOAR platform presented here integrates ATT\&CK directly into its core, offering a native visual matrix tightly coupled with incident metadata and playbook execution. By embedding this visualization, analysts gain immediate insight into threat patterns and can prioritize response actions based on frequently exploited techniques. This also supports proactive defense strategies, such as identifying unmonitored or under-covered techniques and adapting detection rules accordingly.
+Commercial SOAR solutions like Palo Alto Cortex XSOAR provide built-in support for ATT\&CK. Incidents can be tagged with tactics and techniques, and dashboard modules allow visualization of coverage and attack surface exposure~\cite{paloalto}. XSOAR also provides support for enriching threat intel using ATT\&CK metadata and allows filtering and reports based on technique distributions.
 
-Overall, the MITRE ATT\&CK module elevates the strategic value of the SOAR platform, enabling structured threat intelligence application, better prioritization, and improved operational alignment with adversary behaviors.
+Splunk SOAR does not natively provide a full ATT\&CK matrix front-end, but integrations with the Splunk Security Essentials app or external visualizations (e.g., MITRE ATT\&CK Navigator) will allow SOCs to map playbooks and detections to tactics and techniques~\cite{splunk}.
+
+Open-source platforms such as Shuffle typically will not support a dedicated ATT\&CK interface; however, users can tag incidents manually and create supports in their own custom dashboards leveraging 3rd party tools such as ATT\&CK Navigator, Kibana, or D3.js dashboards~\cite{techtarget}.
+
+The custom SOAR platform we advocate here deeply integrates ATT\&CK as part of it's core. It provides a natively supported visual matrix completely tied to an incident time-series metadata and playbook execution. By embedding the ATT\&CK visual matrix, analysts can quickly visual clues to threat-patterns, allowing them to prioritize response based on most-frequently exploited techniques, and provide data for establishing proactive defense strategies for techniques not monitored or previously reported, as well as techniques that may be completely under-covered.
+
+Overall, the MITRE ATT\&CK matrix and reference module enhance the strategic value to the SOAR platform, enabling application of structured threat intelligence, which can better position prioritization, and increased operational alignment with adversarial behavior.
