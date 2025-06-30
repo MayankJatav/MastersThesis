@@ -15,27 +15,27 @@ Tables~\ref{tab:fabrics_results} and~\ref{tab:oct_results} summarize the compara
 \caption{Performance Comparison on Fabric Dataset (RGB)}
 \label{tab:fabrics_results}
 \begin{adjustbox}{width=\textwidth}
-\begin{tabular}{||l||r||r||ccc||ccc||ccc||ccc||}
+\begin{tabular}{||l||ccc||ccc||ccc||ccc||}
 \hline\hline
-\multirow{2}{*}{\textbf{Method}} & \textbf{Parameters} & \textbf{GFlops} & \multicolumn{3}{c||}{\textbf{Accuracy (\%)}} & \multicolumn{3}{c||}{\textbf{Precision}} & \multicolumn{3}{c||}{\textbf{Recall}} & \multicolumn{3}{c||}{\textbf{F1 Score}} \\
-\cline{4-15}
- & & & Cotton & Polyester & Wool & Cotton & Polyester & Wool & Cotton & Polyester & Wool & Cotton & Polyester & Wool \\
+\multirow{2}{*}{\textbf{Method}} & \multicolumn{3}{c||}{\textbf{Accuracy (\%)}} & \multicolumn{3}{c||}{\textbf{Precision}} & \multicolumn{3}{c||}{\textbf{Recall}} & \multicolumn{3}{c||}{\textbf{F1 Score}} \\
+\cline{2-13}
+ & Cotton & Polyester & Wool & Cotton & Polyester & Wool & Cotton & Polyester & Wool & Cotton & Polyester & Wool \\
 \hline\hline
-Our Method & 2,89,71,219 & 5.70 & 96.84 & 99.63 & 98.09 & 1 & 0.92 & 1 & 0.97 & 1 & 0.98 & 0.98 & 0.96 & 0.99 \\
+Our Method & 96.84 & 99.63 & 98.09 & 1 & 0.92 & 1 & 0.97 & 1 & 0.98 & 0.98 & 0.96 & 0.99 \\
 \hline
-Ying Hing et al~\cite{hong2024research} & 13,42,72,835 & 15.47 & \multicolumn{3}{|c||}{99.73} & \multicolumn{3}{|c||}{-} & \multicolumn{3}{|c||}{-} & \multicolumn{3}{|c||}{-} \\
+Ying Hing et al~\cite{hong2024research} & \multicolumn{3}{|c||}{99.73} & \multicolumn{3}{|c||}{-} & \multicolumn{3}{|c||}{-} & \multicolumn{3}{|c||}{-} \\
 \hline
-Chitra G M et al~\cite{chitra2023fabric} & 8,62,37,184 & 17.58 & \multicolumn{3}{|c||}{87} & \multicolumn{3}{|c||}{\begin{tabular}[c]{@{}c@{}}Cotton: 0.846\\ Nylon: 0.918\\ Silk: 0.820\\ Polyester: 0.92\end{tabular}} & \multicolumn{3}{|c||}{\begin{tabular}[c]{@{}c@{}}Cotton: 0.83\\ Nylon: 0.949\\ Silk: 0.931\\ Polyester: 0.719\end{tabular}} & \multicolumn{3}{|c||}{\begin{tabular}[c]{@{}c@{}}Cotton: 0.838\\ Nylon: 0.933\\ Silk: 0.872\\ Polyester: 0.807\end{tabular}} \\
+Chitra G M et al~\cite{chitra2023fabric} & \multicolumn{3}{|c||}{87} & \multicolumn{3}{|c||}{\begin{tabular}[c]{@{}c@{}}Cotton: 0.846\\ Nylon: 0.918\\ Silk: 0.820\\ Polyester: 0.92\end{tabular}} & \multicolumn{3}{|c||}{\begin{tabular}[c]{@{}c@{}}Cotton: 0.83\\ Nylon: 0.949\\ Silk: 0.931\\ Polyester: 0.719\end{tabular}} & \multicolumn{3}{|c||}{\begin{tabular}[c]{@{}c@{}}Cotton: 0.838\\ Nylon: 0.933\\ Silk: 0.872\\ Polyester: 0.807\end{tabular}} \\
 \hline
-Abu Sayem et al [VGG15]~\cite{siam2023textilenet} & 2,77,24,867 & 15.36 & \multicolumn{3}{|c||}{94.12} & \multicolumn{3}{|c||}{94.61} & \multicolumn{3}{|c||}{94.17} & \multicolumn{3}{|c||}{94.43} \\
+Abu Sayem et al [VGG15]~\cite{siam2023textilenet} & \multicolumn{3}{|c||}{94.12} & \multicolumn{3}{|c||}{94.61} & \multicolumn{3}{|c||}{94.17} & \multicolumn{3}{|c||}{94.43} \\
 \hline
-Abu Sayem et al [InceptionV2]~\cite{siam2023textilenet} & 2,29,99,267 & 5.76 & \multicolumn{3}{|c||}{82.7} & \multicolumn{3}{|c||}{82.73} & \multicolumn{3}{|c||}{82.7} & \multicolumn{3}{|c||}{82.07} \\
+Abu Sayem et al [InceptionV2]~\cite{siam2023textilenet} & \multicolumn{3}{|c||}{82.7} & \multicolumn{3}{|c||}{82.73} & \multicolumn{3}{|c||}{82.7} & \multicolumn{3}{|c||}{82.07} \\
 \hline
-Abu Sayem et al [Resnet100]~\cite{siam2023textilenet} & 4,37,13,859 & 14.61 & \multicolumn{3}{|c||}{73.12} & \multicolumn{3}{|c||}{72.77} & \multicolumn{3}{|c||}{73.32} & \multicolumn{3}{|c||}{73.33} \\
+Abu Sayem et al [Resnet100]~\cite{siam2023textilenet} & \multicolumn{3}{|c||}{73.12} & \multicolumn{3}{|c||}{72.77} & \multicolumn{3}{|c||}{73.32} & \multicolumn{3}{|c||}{73.33} \\
 \hline
-Abu Sayem et al [ConvNextBase]~\cite{siam2023textilenet} & 8,82,53,827 & 15.38 & \multicolumn{3}{|c||}{90.07} & \multicolumn{3}{|c||}{90.73} & \multicolumn{3}{|c||}{90.7} & \multicolumn{3}{|c||}{90.38} \\
+Abu Sayem et al [ConvNextBase]~\cite{siam2023textilenet} & \multicolumn{3}{|c||}{90.07} & \multicolumn{3}{|c||}{90.73} & \multicolumn{3}{|c||}{90.7} & \multicolumn{3}{|c||}{90.38} \\
 \hline
-Abu Sayem et al [MobileNetV1]~\cite{siam2023textilenet} & 30,44,355 & 0.33 & \multicolumn{3}{|c||}{95.17} & \multicolumn{3}{|c||}{95.47} & \multicolumn{3}{|c||}{95.23} & \multicolumn{3}{|c||}{95.34} \\
+Abu Sayem et al [MobileNetV1]~\cite{siam2023textilenet} & \multicolumn{3}{|c||}{95.17} & \multicolumn{3}{|c||}{95.47} & \multicolumn{3}{|c||}{95.23} & \multicolumn{3}{|c||}{95.34} \\
 \hline\hline
 \end{tabular}
 \end{adjustbox}
@@ -46,27 +46,27 @@ Abu Sayem et al [MobileNetV1]~\cite{siam2023textilenet} & 30,44,355 & 0.33 & \mu
 \caption{Performance Comparison on Fabrics OCT Dataset}
 \label{tab:oct_results}
 \begin{adjustbox}{width=\textwidth}
-\begin{tabular}{||l||r||r||ccc||ccc||ccc||ccc||}
+\begin{tabular}{||l||ccc||ccc||ccc||ccc||}
 \hline\hline
-\multirow{2}{*}{\textbf{Method}} & \textbf{Parameters} & \textbf{GFlops} & \multicolumn{3}{c||}{\textbf{Accuracy (\%)}} & \multicolumn{3}{c||}{\textbf{Precision}} & \multicolumn{3}{c||}{\textbf{Recall}} & \multicolumn{3}{c||}{\textbf{F1 Score}} \\
-\cline{4-15}
- & & & Cotton & Polyester & Wool & Cotton & Polyester & Wool & Cotton & Polyester & Wool & Cotton & Polyester & Wool \\
+\multirow{2}{*}{\textbf{Method}} & \multicolumn{3}{c||}{\textbf{Accuracy (\%)}} & \multicolumn{3}{c||}{\textbf{Precision}} & \multicolumn{3}{c||}{\textbf{Recall}} & \multicolumn{3}{c||}{\textbf{F1 Score}} \\
+\cline{2-13}
+ & Cotton & Polyester & Wool & Cotton & Polyester & Wool & Cotton & Polyester & Wool & Cotton & Polyester & Wool \\
 \hline\hline
-Our Method & 2,89,71,219 & 5.70 & 99.66 & 100 & 100 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+Our Method & 99.66 & 100 & 100 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
 \hline
-Ying Hing et al~\cite{hong2024research} & 13,42,72,835 & 15.47 & \multicolumn{3}{|c||}{-} & \multicolumn{3}{|c||}{-} & \multicolumn{3}{|c||}{-} & \multicolumn{3}{|c||}{-} \\
+Ying Hing et al~\cite{hong2024research} & \multicolumn{3}{|c||}{-} & \multicolumn{3}{|c||}{-} & \multicolumn{3}{|c||}{-} & \multicolumn{3}{|c||}{-} \\
 \hline
-Chitra G M et al~\cite{chitra2023fabric} & 8,62,37,184 & 17.58 & \multicolumn{3}{|c||}{-} & \multicolumn{3}{|c||}{-} & \multicolumn{3}{|c||}{-} & \multicolumn{3}{|c||}{-} \\
+Chitra G M et al~\cite{chitra2023fabric} & \multicolumn{3}{|c||}{-} & \multicolumn{3}{|c||}{-} & \multicolumn{3}{|c||}{-} & \multicolumn{3}{|c||}{-} \\
 \hline
-Abu Sayem et al [VGG15]~\cite{siam2023textilenet} & 2,77,24,867 & 15.36 & \multicolumn{3}{|c||}{99.69} & \multicolumn{3}{|c||}{100} & \multicolumn{3}{|c||}{98.74} & \multicolumn{3}{|c||}{98.93} \\
+Abu Sayem et al [VGG15]~\cite{siam2023textilenet} & \multicolumn{3}{|c||}{99.69} & \multicolumn{3}{|c||}{100} & \multicolumn{3}{|c||}{98.74} & \multicolumn{3}{|c||}{98.93} \\
 \hline
-Abu Sayem et al [InceptionV2]~\cite{siam2023textilenet} & 2,29,99,267 & 5.76 & \multicolumn{3}{|c||}{97.16} & \multicolumn{3}{|c||}{98.77} & \multicolumn{3}{|c||}{100} & \multicolumn{3}{|c||}{99.31} \\
+Abu Sayem et al [InceptionV2]~\cite{siam2023textilenet} & \multicolumn{3}{|c||}{97.16} & \multicolumn{3}{|c||}{98.77} & \multicolumn{3}{|c||}{100} & \multicolumn{3}{|c||}{99.31} \\
 \hline
-Abu Sayem et al [Resnet100]~\cite{siam2023textilenet} & 4,37,13,859 & 14.61 & \multicolumn{3}{|c||}{93.12} & \multicolumn{3}{|c||}{97.73} & \multicolumn{3}{|c||}{98.82} & \multicolumn{3}{|c||}{98.26} \\
+Abu Sayem et al [Resnet100]~\cite{siam2023textilenet} & \multicolumn{3}{|c||}{93.12} & \multicolumn{3}{|c||}{97.73} & \multicolumn{3}{|c||}{98.82} & \multicolumn{3}{|c||}{98.26} \\
 \hline
-Abu Sayem et al [ConvNextBase]~\cite{siam2023textilenet} & 8,82,53,827 & 15.38 & \multicolumn{3}{|c||}{99.06} & \multicolumn{3}{|c||}{97.76} & \multicolumn{3}{|c||}{100} & \multicolumn{3}{|c||}{98.8} \\
+Abu Sayem et al [ConvNextBase]~\cite{siam2023textilenet} & \multicolumn{3}{|c||}{99.06} & \multicolumn{3}{|c||}{97.76} & \multicolumn{3}{|c||}{100} & \multicolumn{3}{|c||}{98.8} \\
 \hline
-Abu Sayem et al [MobileNetV1]~\cite{siam2023textilenet} & 30,44,355 & 0.33 & \multicolumn{3}{|c||}{99.87} & \multicolumn{3}{|c||}{100} & \multicolumn{3}{|c||}{97.27} & \multicolumn{3}{|c||}{98.57} \\
+Abu Sayem et al [MobileNetV1]~\cite{siam2023textilenet} & \multicolumn{3}{|c||}{99.87} & \multicolumn{3}{|c||}{100} & \multicolumn{3}{|c||}{97.27} & \multicolumn{3}{|c||}{98.57} \\
 \hline\hline
 \end{tabular}
 \end{adjustbox}
