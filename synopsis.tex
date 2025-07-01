@@ -1,7 +1,6 @@
-% Initialize Document (Report)
 \documentclass[12pt, twoside, a4paper]{report}
 
-\author{Utkarsh Mishra}
+\author{Mayank Jatav}
 \usepackage{mathptmx, lettrine}
 \usepackage{mathtools,amsmath}
 \usepackage{gensymb}
@@ -65,6 +64,13 @@
 \definecolor{darkpastelgreen}{rgb}{0.01, 0.75, 0.24}
 \usepackage{hyperref, url}
 
+% ...existing code...
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{0.5em}{0.5em}
+\titlespacing*{\subsection}{0pt}{0.5em}{0.5em}
+\titlespacing*{\subsubsection}{0pt}{0.5em}{0.5em}
+% ...existing code...
+
 % Online
 \hypersetup{colorlinks=true, linkcolor=blue, citecolor=darkpastelgreen, filecolor=magenta, urlcolor=blue}
 % Print
@@ -125,17 +131,19 @@
 \renewcommand{\thesection}{\arabic{section}}
 \setcounter{secnumdepth}{10}
 
-\input{synopsis_contents/introduction}
-\input{synopsis_contents/motivation}
-\input{synopsis_contents/research_gap}
-\input{synopsis_contents/proposed_work}
-\input{synopsis_contents/results}
-\input{synopsis_contents/thesis_oragnization}
+% \part{Fabric Classification using Deep Learning}
+
+\input{synopsis_contents/research}
+\input{synopsis_contents/internship}
+
+% \part{Security Orchestration Automation and Response}
 
 % References
 \baselineskip=16pt	% Length between two lines in a paragraph
-\addcontentsline{toc}{}{References}
+
+\titlespacing*{\subsubsection}{0pt}{0\addcontentsline{toc}{}{References}
 \bibliographystyle{unsrt}
 \renewcommand{\bibname}{References}
-\bibliography{references}
+\bibliography{synopsis_contents/references}
+
 \end{document}
