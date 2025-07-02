@@ -1,4 +1,4 @@
-\chapter{Security Orchestration Automation and Response}
+\section{Security Orchestration Automation and Response}
 
 The increasing volume, velocity, and sophistication of cyber threats have made manual incident response insufficient in modern Security Operations Centers (SOCs). As organizations face growing pressure to detect and mitigate attacks in real time, Security Orchestration, Automation, and Response (SOAR) platforms have emerged as a critical solution for scaling security operations and reducing response times. SOAR systems integrate threat intelligence, automate repetitive tasks, and orchestrate incident handling workflows across various tools and teams~\cite{paloalto_soar, ibm_soc}.
 
@@ -16,6 +16,13 @@ Typically, a SOC is staffed with multiple tiers of security analysts:
     \item \textbf{Tier 2 (Incident Responders):} Perform deeper investigations, validate threats, and initiate containment actions.
     \item \textbf{Tier 3 (Threat Hunters):} Conduct proactive threat hunting and in-depth forensic analysis.
 \end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\textwidth]{images/data_flow_soc.png}
+    \caption{Data flow in a typical Security Operations Center (SOC) environment.}
+    \label{fig:data_flow_soc}
+\end{figure}
 
 However, as cyberattacks grow more sophisticated and the volume of alerts increases, traditional SOCs face challenges related to analyst fatigue, delayed response times, and inconsistent incident handling. This is where SOAR (Security Orchestration, Automation, and Response) platforms play a transformative role.
 
