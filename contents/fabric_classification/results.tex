@@ -1,73 +1,81 @@
+\vspace{-1em}
 \section{Experimental Setup and Results}
 
 The proposed hybrid CNN–ViT architecture was implemented using the PyTorch 2.0 framework, which offers dynamic computation graphs and cross-platform GPU support, resulting in a computing environment optimized for complex deep learning models~\cite{paszke2019pytorch}. The input images were obtained from both macro (RGB) and Optical Coherence Tomography (OCT) fabric datasets and then preprocessed by normalizing their pixel intensity distributions across samples in order to maintain uniformity, and resized to a standard input size of (224×224) pixels regardless of which dataset was input into the model. All experimentation was completed on an NVIDIA DGX A100 workstation with 40GB GPU memory, with the capacity to perform evaluations and training at scale. Adam optimizer was used to train the model, as Adam was established to support stability of convergence through adaptive learning rates and momentum-based updates~\cite{kingma2014adam}. In our model, we used a learning rate of 0.001, and a batch size of 8. The learning rate and batch size were selected in a manner that allows for reasonably fast training, whilst also being capable of training on a single GPU. For the loss function, we used cross-entropy for the ability to consider a multi-class classification tasks with mutually exclusive labels (type of fabrics)~\cite{goodfellow2016deep}. Standard metrics of classification (accuracy, precision, recall, and F1 score) were used to benchmark prediction performance both as overall group classification and performance results per class.
-
 \subsection{Results}
 
-The proposed hybrid model was tested on RGB macro images and OCT images of fabrics. The model performed very well on the iBug Fabric dataset~\cite{researchgate}, in terms of class-wise accuracy with Cotton (96.84\%), Polyester (99.63\%), and Wool (98.09\%). The precision and recall mean scores over classes are all high, giving evidence of the robustness of the model.
+To evaluate the effectiveness of our proposed hybrid CNN–ViT architecture, we conducted experiments on three different datasets: the RGB Fabrics Dataset, the OCT Fabrics Dataset, and the TextileNet Dataset. Our model was compared against various methods proposed by Ying Hing et al.~\cite{hong2024research}, Chitra G M et al.~\cite{chitra2023fabric} and Siam et al.~\cite{siam2023textilenet}. The performance metrics include Accuracy, Precision, Recall, and F1-Score, along with the number of parameters in millions (M).
 
-On the OCT dataset~\cite{kampouris2016fine}, the model performed exceptionally well achieving near-perfect classification accuracy, with Cotton (99.66\%) and Polyester and Wool (100\%). All classes have a precision, recall, and F1-score of 1.00, which showed there was no misclassification.
+\begin{itemize}[topsep=0pt, noitemsep]
+    \item \textbf{RGB Fabrics Dataset:} Table~\ref{tab:rgb_results} presents the results for the RGB fabric dataset. Our model achieved 97.33\% accuracy, coming very close to the best-performing model (99.73\%) while using significantly fewer parameters (28.97M vs. 134.27M). It also outperformed all variants of Siam et al.’s models, including MobileNetV2, despite being more lightweight and efficient overall.
 
-Tables~\ref{tab:fabrics_results} and~\ref{tab:oct_results} summarize the comparative results on both datasets.
+    \item \textbf{OCT Fabrics Dataset:} As shown in Table~\ref{tab:oct_results}, We achieved nearly perfect performance with 99.66\% accuracy and 100\% precision, recall, and F1 score. While MobileNetV2 slightly outperformed us in accuracy (99.87\%), our model still demonstrated excellent results with a balanced trade-off between accuracy and parameter size.
 
-\begin{table}[htbp]
+    \item \textbf{TextileNet Dataset:} On the more challenging TextileNet dataset, as shown in Table~\ref{tab:textilenet_results}, our model achieved 74.36\% accuracy—better than VGG16 and ConvNextBase. Although not the highest, it maintained consistent precision and recall, showing strong generalization across varied fabric types while keeping the model size efficient.
+\end{itemize}
+
+\begin{table}[h]
 \centering
-\caption{Performance Comparison on Fabric Dataset}
-\label{tab:fabrics_results}
-\begin{adjustbox}{width=\textwidth}
-\begin{tabular}{||l||ccc||ccc||ccc||ccc||}
-\hline\hline
-\multirow{2}{*}{\textbf{Method}} & \multicolumn{3}{c||}{\textbf{Accuracy (\%)}} & \multicolumn{3}{c||}{\textbf{Precision}} & \multicolumn{3}{c||}{\textbf{Recall}} & \multicolumn{3}{c||}{\textbf{F1 Score}} \\
-\cline{2-13}
- & Cotton & Polyester & Wool & Cotton & Polyester & Wool & Cotton & Polyester & Wool & Cotton & Polyester & Wool \\
-\hline\hline
-Our Method & 96.84 & 99.63 & 98.09 & 1 & 0.92 & 1 & 0.97 & 1 & 0.98 & 0.98 & 0.96 & 0.99 \\
-\hline
-Ying Hing et al~\cite{hong2024research} & \multicolumn{3}{|c||}{99.73} & \multicolumn{3}{|c||}{-} & \multicolumn{3}{|c||}{-} & \multicolumn{3}{|c||}{-} \\
-\hline
-Chitra G M et al~\cite{chitra2023fabric} & \multicolumn{3}{|c||}{87} & \multicolumn{3}{|c||}{\begin{tabular}[c]{@{}c@{}}Cotton: 0.846\\ Nylon: 0.918\\ Silk: 0.820\\ Polyester: 0.92\end{tabular}} & \multicolumn{3}{|c||}{\begin{tabular}[c]{@{}c@{}}Cotton: 0.83\\ Nylon: 0.949\\ Silk: 0.931\\ Polyester: 0.719\end{tabular}} & \multicolumn{3}{|c||}{\begin{tabular}[c]{@{}c@{}}Cotton: 0.838\\ Nylon: 0.933\\ Silk: 0.872\\ Polyester: 0.807\end{tabular}} \\
-\hline
-Abu Sayem et al [VGG15]~\cite{siam2023textilenet} & \multicolumn{3}{|c||}{94.12} & \multicolumn{3}{|c||}{94.61} & \multicolumn{3}{|c||}{94.17} & \multicolumn{3}{|c||}{94.43} \\
-\hline
-Abu Sayem et al [InceptionV2]~\cite{siam2023textilenet} & \multicolumn{3}{|c||}{82.7} & \multicolumn{3}{|c||}{82.73} & \multicolumn{3}{|c||}{82.7} & \multicolumn{3}{|c||}{82.07} \\
-\hline
-Abu Sayem et al [Resnet100]~\cite{siam2023textilenet} & \multicolumn{3}{|c||}{73.12} & \multicolumn{3}{|c||}{72.77} & \multicolumn{3}{|c||}{73.32} & \multicolumn{3}{|c||}{73.33} \\
-\hline
-Abu Sayem et al [ConvNextBase]~\cite{siam2023textilenet} & \multicolumn{3}{|c||}{90.07} & \multicolumn{3}{|c||}{90.73} & \multicolumn{3}{|c||}{90.7} & \multicolumn{3}{|c||}{90.38} \\
-\hline
-Abu Sayem et al [MobileNetV1]~\cite{siam2023textilenet} & \multicolumn{3}{|c||}{95.17} & \multicolumn{3}{|c||}{95.47} & \multicolumn{3}{|c||}{95.23} & \multicolumn{3}{|c||}{95.34} \\
-\hline\hline
+\caption{Results on RGB Fabrics Dataset}
+\label{tab:rgb_results}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Method} & \textbf{Parameters (M)} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1 Score} \\
+\midrule
+\textbf{Our Method} & 28.97 & 97.33 & 98.00 & 97.85 & 97.60 \\
+Ying Hing et al.~\cite{hong2024research} & 134.27 & 99.73 & 99.77 & 99.76 & 99.76 \\
+Chitra G M et al.~\cite{chitra2023fabric} & 86.24 & 87.00 & 86.43 & 85.96 & 85.83 \\
+Siam et al. [VGG16]~\cite{siam2023textilenet} & 27.72 & 94.12 & 94.61 & 94.17 & 94.43 \\
+Siam et al. [InceptionV3]~\cite{siam2023textilenet} & 22.99 & 82.70 & 82.73 & 82.70 & 82.07 \\
+Siam et al. [ResNet101]~\cite{siam2023textilenet} & 43.71 & 73.12 & 72.77 & 73.32 & 73.33 \\
+Siam et al. [ConvNextBase]~\cite{siam2023textilenet} & 88.25 & 90.07 & 90.73 & 90.70 & 90.38 \\
+Siam et al. [MobileNetV2]~\cite{siam2023textilenet} & 0.30 & 95.17 & 95.47 & 95.23 & 95.34 \\
+\bottomrule
 \end{tabular}
 \end{adjustbox}
 \end{table}
 
-\begin{table}[htbp]
+\begin{table}[h]
 \centering
-\caption{Performance Comparison on Fabrics OCT Dataset}
+\caption{Results on OCT Fabrics Dataset}
 \label{tab:oct_results}
-\begin{adjustbox}{width=\textwidth}
-\begin{tabular}{||l||ccc||ccc||ccc||ccc||}
-\hline\hline
-\multirow{2}{*}{\textbf{Method}} & \multicolumn{3}{c||}{\textbf{Accuracy (\%)}} & \multicolumn{3}{c||}{\textbf{Precision}} & \multicolumn{3}{c||}{\textbf{Recall}} & \multicolumn{3}{c||}{\textbf{F1 Score}} \\
-\cline{2-13}
- & Cotton & Polyester & Wool & Cotton & Polyester & Wool & Cotton & Polyester & Wool & Cotton & Polyester & Wool \\
-\hline\hline
-Our Method & 99.66 & 100 & 100 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
-\hline
-Ying Hing et al~\cite{hong2024research} & \multicolumn{3}{|c||}{-} & \multicolumn{3}{|c||}{-} & \multicolumn{3}{|c||}{-} & \multicolumn{3}{|c||}{-} \\
-\hline
-Chitra G M et al~\cite{chitra2023fabric} & \multicolumn{3}{|c||}{-} & \multicolumn{3}{|c||}{-} & \multicolumn{3}{|c||}{-} & \multicolumn{3}{|c||}{-} \\
-\hline
-Abu Sayem et al [VGG15]~\cite{siam2023textilenet} & \multicolumn{3}{|c||}{99.69} & \multicolumn{3}{|c||}{100} & \multicolumn{3}{|c||}{98.74} & \multicolumn{3}{|c||}{98.93} \\
-\hline
-Abu Sayem et al [InceptionV2]~\cite{siam2023textilenet} & \multicolumn{3}{|c||}{97.16} & \multicolumn{3}{|c||}{98.77} & \multicolumn{3}{|c||}{100} & \multicolumn{3}{|c||}{99.31} \\
-\hline
-Abu Sayem et al [Resnet100]~\cite{siam2023textilenet} & \multicolumn{3}{|c||}{93.12} & \multicolumn{3}{|c||}{97.73} & \multicolumn{3}{|c||}{98.82} & \multicolumn{3}{|c||}{98.26} \\
-\hline
-Abu Sayem et al [ConvNextBase]~\cite{siam2023textilenet} & \multicolumn{3}{|c||}{99.06} & \multicolumn{3}{|c||}{97.76} & \multicolumn{3}{|c||}{100} & \multicolumn{3}{|c||}{98.8} \\
-\hline
-Abu Sayem et al [MobileNetV1]~\cite{siam2023textilenet} & \multicolumn{3}{|c||}{99.87} & \multicolumn{3}{|c||}{100} & \multicolumn{3}{|c||}{97.27} & \multicolumn{3}{|c||}{98.57} \\
-\hline\hline
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Method} & \textbf{Parameters (M)} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1 Score} \\
+\midrule
+\textbf{Our Method} & 28.97 & 99.66 & 100.00 & 100.00 & 100.00 \\
+Ying Hing et al.~\cite{hong2024research} & 134.27 & 99.77 & 99.77 & 99.77 & 99.77 \\
+Chitra G M et al.~\cite{chitra2023fabric} & 86.24 & 99.77 & 99.77 & 99.77 & 99.77 \\
+Siam et al. [VGG16]~\cite{siam2023textilenet} & 27.72 & 99.69 & 100.00 & 98.74 & 98.93 \\
+Siam et al. [InceptionV3]~\cite{siam2023textilenet} & 22.99 & 97.16 & 98.77 & 100.00 & 99.31 \\
+Siam et al. [ResNet101]~\cite{siam2023textilenet} & 43.71 & 93.12 & 97.73 & 98.82 & 98.26 \\
+Siam et al. [ConvNextBase]~\cite{siam2023textilenet} & 88.25 & 99.06 & 96.76 & 100.00 & 98.80 \\
+Siam et al. [MobileNetV2]~\cite{siam2023textilenet} & 0.30 & 99.87 & 100.00 & 97.27 & 98.57 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Results on TextileNet Dataset}
+\label{tab:textilenet_results}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Method} & \textbf{Parameters (M)} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1 Score} \\
+\midrule
+\textbf{Our Method} & 28.97 & 74.36 & 72.73 & 73.36 & 72.38 \\
+Ying Hing et al.~\cite{hong2024research} & 134.27 & 88.65 & 89.12 & 88.64 & 88.84 \\
+Chitra G M et al.~\cite{chitra2023fabric} & 86.24 & 88.06 & 88.74 & 88.06 & 88.20 \\
+Siam et al. [VGG16]~\cite{siam2023textilenet} & 27.72 & 24.31 & 5.91 & 24.31 & 9.52 \\
+Siam et al. [InceptionV3]~\cite{siam2023textilenet} & 22.99 & 78.84 & 82.48 & 78.84 & 80.34 \\
+Siam et al. [ResNet101]~\cite{siam2023textilenet} & 43.71 & 77.94 & 79.33 & 77.94 & 78.47 \\
+Siam et al. [ConvNextBase]~\cite{siam2023textilenet} & 88.25 & 29.78 & 8.87 & 29.78 & 13.67 \\
+Siam et al. [MobileNetV2]~\cite{siam2023textilenet} & 0.30 & 81.59 & 82.90 & 81.59 & 82.27 \\
+\bottomrule
 \end{tabular}
 \end{adjustbox}
 \end{table}
