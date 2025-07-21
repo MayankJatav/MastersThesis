@@ -2,12 +2,13 @@
 \section{Experimental Setup and Results}
 
 The proposed hybrid CNN–ViT architecture was implemented using the PyTorch 2.0 framework, which offers dynamic computation graphs and cross-platform GPU support, resulting in a computing environment optimized for complex deep learning models~\cite{paszke2019pytorch}. The input images were obtained from both macro (RGB) and Optical Coherence Tomography (OCT) fabric datasets and then preprocessed by normalizing their pixel intensity distributions across samples in order to maintain uniformity, and resized to a standard input size of (224×224) pixels regardless of which dataset was input into the model. All experimentation was completed on an NVIDIA DGX A100 workstation with 40GB GPU memory, with the capacity to perform evaluations and training at scale. Adam optimizer was used to train the model, as Adam was established to support stability of convergence through adaptive learning rates and momentum-based updates~\cite{kingma2014adam}. In our model, we used a learning rate of 0.001, and a batch size of 8. The learning rate and batch size were selected in a manner that allows for reasonably fast training, whilst also being capable of training on a single GPU. For the loss function, we used cross-entropy for the ability to consider a multi-class classification tasks with mutually exclusive labels (type of fabrics)~\cite{goodfellow2016deep}. Standard metrics of classification (accuracy, precision, recall, and F1 score) were used to benchmark prediction performance both as overall group classification and performance results per class.
+\vspace{-2.25em}
 \subsection{Results}
 
-To evaluate the effectiveness of our proposed hybrid CNN–ViT architecture, we conducted experiments on three different datasets: the RGB Fabrics Dataset, the OCT Fabrics Dataset, and the TextileNet Dataset. Our model was compared against various methods proposed by Ying Hing et al.~\cite{hong2024research}, Chitra G M et al.~\cite{chitra2023fabric} and Siam et al.~\cite{siam2023textilenet}. The performance metrics include Accuracy, Precision, Recall, and F1-Score, along with the number of parameters in millions (M).
+To evaluate the effectiveness of our proposed hybrid CNN–ViT architecture, we conducted experiments on three different datasets: the Fabrics Dataset, the OCT Fabrics Dataset, and the TextileNet Dataset. Our model was compared against various methods proposed by Ying Hing et al.~\cite{hong2024research}, Chitra G M et al.~\cite{chitra2023fabric} and Siam et al.~\cite{siam2023textilenet}. The performance metrics include Accuracy, Precision, Recall, and F1-Score, along with the number of parameters in millions (M).
 
 \begin{itemize}[topsep=0pt, noitemsep]
-    \item \textbf{RGB Fabrics Dataset:} Table~\ref{tab:rgb_results} presents the results for the RGB fabric dataset. Our model achieved 97.33\% accuracy, coming very close to the best-performing model (99.73\%) while using significantly fewer parameters (28.97M vs. 134.27M). It also outperformed all variants of Siam et al.’s models, including MobileNetV2, despite being more lightweight and efficient overall.
+    \item \textbf{Fabrics Dataset:} Table~\ref{tab:rgb_results} presents the results for the RGB fabric dataset. Our model achieved 97.33\% accuracy, coming very close to the best-performing model (99.73\%) while using significantly fewer parameters (28.97M vs. 134.27M). It also outperformed all variants of Siam et al.’s models, including MobileNetV2, despite being more lightweight and efficient overall.
 
     \item \textbf{OCT Fabrics Dataset:} As shown in Table~\ref{tab:oct_results}, We achieved nearly perfect performance with 99.66\% accuracy and 100\% precision, recall, and F1 score. While MobileNetV2 slightly outperformed us in accuracy (99.87\%), our model still demonstrated excellent results with a balanced trade-off between accuracy and parameter size.
 
@@ -16,7 +17,7 @@ To evaluate the effectiveness of our proposed hybrid CNN–ViT architecture, we 
 
 \begin{table}[h]
 \centering
-\caption{Results on RGB Fabrics Dataset}
+\caption{Results on Fabrics Dataset}
 \label{tab:rgb_results}
 \begin{adjustbox}{max width=\textwidth}
 \begin{tabular}{lccccc}
