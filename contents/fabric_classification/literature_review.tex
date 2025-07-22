@@ -14,7 +14,7 @@ The implementation and level of understanding of a strong, efficacious and gener
 
 Here, we provide our overview and review of three datasets which we utilized in the development and audit of our deep learning models for this research. These datasets were selected based upon relevance, heterogeneity, and the diversity of challenges that they represent in the fabric classification domain. Each dataset has helped inform our understanding of how fabrics presented visually, micro-structure, and material properties can be categorized in these helpful analyses. The datasets reviewed are described below:
 
-\subsubsection{A. Fine-Grained Material Classification Using Micro-geometry and Reflectance~\cite{kampouris2016fine}}
+\subsubsection{A. Fine-Grained Material Classification using Micro-geometry and Reflectance~\cite{kampouris2016fine}}
 
 One of the important base datasets for fine-grained material classification is based on detailed geometry and reflectance properties, introduced by Kampouris et al., which highlights slightly different materials through high-resolution images of shape, surface details, and reflections captured under different lighting conditions.
 
@@ -24,7 +24,7 @@ The dataset consists of several classes of fabrics that are listed in Table~\ref
 
 \begin{table}[H]
 \centering
-\caption{Fabric-wise Distribution of Samples and Images}
+\caption{Fabric-wise distribution of Samples and Images}
 \label{tab:fabric_distribution}
 \begin{tabular}{|l|c|c|}
 \hline
@@ -74,7 +74,7 @@ Wool & 90 & 360 \\
     \begin{minipage}{0.8\linewidth}
         \includegraphics[width=\linewidth]{images/iBugDataset}
     \end{minipage}
-    \caption[Sample images from the iBug Fabric Dataset]{Sample images from the iBug Fabric Dataset: (Left) Cotton, (Middle) Polyester, (Right) Wool.}
+    \caption[Sample images from the iBug Fabric Dataset]{Sample images from the iBug Fabric Dataset: Cotton (left), Polyester (middle), Wool (right).}
 \end{figure}
 
 \subsubsection{B. Optical Coherence Tomography Image Dataset of Textile Fabrics~\cite{sabuncu2022optical}}
@@ -104,7 +104,7 @@ One of the main benefits of OCT imaging is that it shows aspects of a fabric’s
     \begin{minipage}{0.8\linewidth}
         \includegraphics[width=\linewidth]{images/FabricOCTDataset.png}
     \end{minipage}
-    \caption[Sample images from the Fabric OCT Dataset]{Sample images from the Fabric OCT Dataset: (Left) Cotton, (Middle) Polyester, (Right) Wool.}
+    \caption[Sample images from the Fabric OCT Dataset]{Sample images from the Fabric OCT Dataset: Cotton (left), Polyester (middle), Wool (right).}
 \end{figure}
 
 The dataset used in this project was organized into three folders, cotton, wool, and polyester, with multiple scans of different fabric pieces made from the same material per folder. A dataset organized this way is well-labeled and clean, supporting the training and testing of deep learning models, model architectures that will most likely learn from structural features rather than appearance. 
@@ -122,14 +122,14 @@ TextileNet consists of two datasets: \textit{TextileNet-fibre} and \textit{Texti
     \begin{minipage}{0.8\linewidth}
         \includegraphics[width=\linewidth]{images/TextileNetDataset.png}
     \end{minipage}
-    \caption[Sample images from the TextileNet Dataset]{Sample images from the TextileNet Dataset: (Left) Denim, (Middle) Crepe, (Right) Satin.}
+    \caption[Sample images from the TextileNet Dataset]{Sample images from the TextileNet Dataset: Denim (left), Crepe (middle), Satin (right).}
 \end{figure}
 
 The value of TextileNet lies in its taxonomy-based structure. The fibre taxonomy range from natural, synthetic, and regenerated fibres (eg cotton, wool, polyester, bamboo viscose and milk casein). While the fabric taxonomy provides categories based on the methods of production (woven, knitted, non-woven), each with its examples (denim, tweed, velvet, jersey).
 
 Overall, TextileNet is suitable for training efficient models for complex fabric composition recognition for both retail, recycling, supply chain application and as support to sustainable fashion design.
 
-\subsection{Existing Work}
+\subsection{Existing works}
 
 In recent years, deep learning has made incredible advancements in image-based classification tasks, including in textiles. There are several works that have explored Convolutional Neural Networks (CNNs) and vision transformer based architectures for classifying fabrics and textile compositions, achieving higher accuracy and robustness approaches. The incorporation of methods like transfer learning and dataset preparation can also assist the model's performance through lower accuracy losses, even when fabrics or textile compositions are not present in the original dataset, consisting of limited or domain specific images. 
 
@@ -148,7 +148,7 @@ The authors utilize a transfer learning approach by fine-tuning the VGG-16 model
     \begin{minipage}{1\linewidth}
         \includegraphics[width=\linewidth]{images/Paper1Model.png}
     \end{minipage}
-    \caption[Model architecture - Hong et al.~\cite{hong2024research}]{Model architecture used for classification in Hong et al.~\cite{hong2024research}.}
+    \caption[Model architecture - Hong et al.~\cite{hong2024research}]{Model architecture used for fabric classification in Hong et al.~\cite{hong2024research}.}
 \end{figure}
 
 Data augmentation is also implemented in this study to improve model generalization. Data augmentations included object rotation, flipping, brightness adjustment, and adding Gaussian noise. Data augmentations will force the network to learn invariant features to some extent and involved overfitting.

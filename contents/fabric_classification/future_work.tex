@@ -1,14 +1,4 @@
-\section{Conclusion and Future Work}
-
-In this thesis, we proposed a hybrid deep learning architecture that integrates Convolutional Neural Networks (CNNs) and Vision Transformers (ViTs) for the classification of textile fabrics using both RGB (macro) and OCT (micro) images. This design enables the model to capture localized texture-based features through CNNs and long-range spatial relationships via ViTs, providing a more comprehensive fabric representation.
-
-We evaluated the model on three datasets: Fabrics, OCTFabrics, and TextileNet. On the Fabrics dataset, our model achieved an accuracy of 97.33\%, outperforming several baseline models and demonstrating superior performance over lightweight models such as Siam et al.'s MobileNetV2~\cite{siam2023textilenet}. For the OCTFabrics dataset, it achieved near-perfect accuracy of 99.66\% along with perfect precision, recall, and F1-score—showcasing strong discriminative power on microstructure-based data. Although MobileNetV2~\cite{siam2023textilenet} slightly surpassed our model in accuracy (99.87\%), our approach maintained significantly fewer parameters (28.97M vs.\ 42.72M).
-
-On the more challenging TextileNet dataset, our model achieved 74.36\% accuracy, surpassing several popular architectures such as VGG16~\cite{simonyan2015vgg} and ConvNextBase. While Ying Hing et al.~\cite{hong2024research} and Chitra G M et al.~\cite{chitra2023fabric} reported higher accuracies (88.65\% and 88.06\% respectively), our model demonstrated better parameter efficiency and balanced performance, affirming its strong generalization ability across diverse fabric types.
-
-Overall, the fusion of CNN and ViT streams helped overcome individual limitations—CNNs excel at local feature extraction but lack global context modeling, while ViTs provide spatial awareness but benefit from CNN-based low-level representations~\cite{dosovitskiy2020vit}. This synergy resulted in a robust, accurate, and efficient architecture suitable for real-world textile classification tasks in both industrial and retail settings.
-
-\subsection*{Future Work}
+\section{Future Work}
 
 While the findings in this research show great potential, they also introduce a number of avenues for continued investigation and development. The following research avenues could substantially help to build the current framework and provide value to the larger idea of intelligent textiles: 
 

@@ -28,13 +28,13 @@ All of these elements are essential to automatically manage the incident lifecyc
 
 \subsection{User Authentication}
 
-The user authentication implemented with the help of \textbf{Login and Signup} module is the entry point into the SOAR platform, responsible for identifying users and managing their access rights. The operations that are undertaken in the SOAR environment are important and sensitive in nature (e.g. accessing threat intelligence, executing playbooks, incident responses); thus, the user authentication module must be secure and possess functionality that relates to user management.
+The user authentication implemented with the help of \textbf{Login and Signup} module is the entry point into the SOAR platform, responsible for identifying users and managing their access rights. The operations that are undertaken in the SOAR environment are important and sensitive in nature (e.g. accessing threat intelligence, executing playbooks, incident responses); thus, the user authentication module must be secure and possess functionality that relates to user management. Hence, the module must be designed to prevent unauthorized access, ensure data integrity, and provide a seamless user experience.
 
 In the implemented system, users register with unique username and password that are stored securely in the backend database. Passwords are never written in plain text. When a user registers, their password will be hashed with a cryptographic hash function (like SHA-256 or bcrypt). When a user logs in, the login password is securely compared to the entries in the database (using secure comparison) to ensure that it is not vulnerable to timing attacks.
 
-The authentication mechanism is stateless and uses JSON Web Tokens (JWT) or session cookies to persist the user state, post-login. After authentication, the user receives a token that must be produced with future APIs. This token based implementation is standard practice in the field, due to the scalability benefits and secure sessions~\cite{paloalto, techtarget}.
+The authentication mechanism is stateless and uses session cookies to persist the user state, post-login. After authentication, the user receives a token that must be produced with future APIs. This token based implementation is standard practice in the field, due to the scalability benefits and secure sessions~\cite{paloalto, techtarget}. The token is signed and can be verified by the server to ensure its authenticity. The token also contains user information, such as user ID and roles, which can be used for authorization.
 
-Currently, the implementation only supports single-role authentication, but the architecture allows for Role-Based Access Control (RBAC) in the future. This is useful when establishing role-based access of specialist teams to certain modules, like, incident response, playbook management, and integrations for operational security and accountability. 
+Currently, the implementation only supports single-role authentication, but the architecture allows for Role-Based Access Control (RBAC) in the future. This is useful when establishing role-based access of specialist teams to certain modules, like, incident response, playbook management, and integrations for operational security and accountability. Different roles can be assigned to users, such as SOC analyst, SOC manager, or administrator, each with different permissions and access levels.
 
 In comparison, enterprise-grade SOAR platforms like Splunk SOAR, and Palo Alto (XSOAR) provide advanced authentication features, including Single Sign-On (SSO), integration to the Lightweight Directory Access Protocol (LDAP), Security Assertion Markup Language (SAML), and multi-factor authentication (MFA)~\cite{splunk, paloalto}. While these features are important to large organizations, lightweight and locally-hosted SOAR solutions may have uuid or token based credentials to provide an easier way of managing access to the solution, especially when handling deployed solutions in air gapped and restricted environments, like defense organizations.
 
@@ -119,7 +119,7 @@ Open-source platforms such as Shuffle follow a comparable model by offering REST
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.9\textwidth]{images/shuffle_soar_apps.png}
-    \caption[[Example of the integrations (apps) interface in Shuffle SOAR]]{Example of the integrations (apps) interface in Shuffle SOAR. Users can visually manage and configure third-party integrations and their actions through a web-based UI.}
+    \caption[Example of the integrations (apps) interface in Shuffle SOAR]{Example of the integrations (apps) interface in Shuffle SOAR. Users can visually manage and configure third-party integrations and their actions through a web-based UI.}
     \label{fig:shuffle-soar-apps}
 \end{figure}
 
@@ -174,7 +174,6 @@ In the SOAR platform, workflows were created and managed through a drag-and-drop
 This way, the SOC analyst can leverage a low-code workspace by graphically modeling complex incident response logic, which makes it accessible both technical and non-technical users. Analysts can also reuse the workflows in numerous playbooks, including the ability for modularity and standardized, repeatable workflows in response procedures.
 
 The architecture of workflow module is essentially the same as that offered by the commercial SOAR platforms. For example, Splunk SOAR supports a visual playbook editor, where each square block represents a discrete action or condition, creating a directed flowchart~\cite{splunk}. Actions can take place as either sequential or parallel, include support for user prompts, decision gates, and failure handling.
-
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.9\textwidth]{images/shuffle_soar_workflow.png}
