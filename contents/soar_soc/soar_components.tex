@@ -174,16 +174,18 @@ In the SOAR platform, workflows were created and managed through a drag-and-drop
 This way, the SOC analyst can leverage a low-code workspace by graphically modeling complex incident response logic, which makes it accessible both technical and non-technical users. Analysts can also reuse the workflows in numerous playbooks, including the ability for modularity and standardized, repeatable workflows in response procedures.
 
 The architecture of workflow module is essentially the same as that offered by the commercial SOAR platforms. For example, Splunk SOAR supports a visual playbook editor, where each square block represents a discrete action or condition, creating a directed flowchart~\cite{splunk}. Actions can take place as either sequential or parallel, include support for user prompts, decision gates, and failure handling.
-\begin{figure}[ht]
+
+Palo Alto Cortex XSOAR expands this by providing conditional flows, loops, exception handling, and variable sharing, across tasks~\cite{paloalto}. Its workflow engine enables automation tasks and human-in-the-loop interactions (e.g., approval requests), providing hybrid response models.
+Open source SOAR platforms, like Shuffle, are also based on workflow automation and provide a visual interface for drag-and-drop placement of integration actions, conditional paths, and data variables~\cite{techtarget}.
+
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{images/shuffle_soar_workflow.png}
-        \caption[Example of a workflow editor in Shuffle SOAR]{Example of a workflow editor in Shuffle SOAR. The visual interface allows users to design and manage automated response workflows by connecting integration actions and defining execution logic.}
+    \includegraphics[width=0.8\textwidth,height=0.9\textheight]{images/shuffle_soar_workflow.png}
+    \caption[Example of a workflow editor in Shuffle SOAR]{Example of a workflow editor in Shuffle SOAR. The visual interface allows users to design and manage automated response workflows by connecting integration actions and defining execution logic.}
     \label{fig:shuffle-soar-workflow}
 \end{figure}
 
-Palo Alto Cortex XSOAR expands this by providing conditional flows, loops, exception handling, and variable sharing, across tasks~\cite{paloalto}. Its workflow engine enables automation tasks and human-in-the-loop interactions (e.g., approval requests), providing hybrid response models.
-
-Open source SOAR platforms, like Shuffle, are also based on workflow automation and provide a visual interface for drag-and-drop placement of integration actions, conditional paths, and data variables~\cite{techtarget}. Shuffle workflows typically reflect a preference for simplicity and ease of scripting by providing fewer limitations, safety guards, and error-handling capabilities relative to enterprise-class systems.
+Shuffle workflows typically reflect a preference for simplicity and ease of scripting by providing fewer limitations, safety guards, and error-handling capabilities relative to enterprise-class systems.
 
 Overall, the workflow module turns logical response strategies into executable sequences, and establishes the structure for managing security automation as a part of the SOAR. The workflow module closes the loop from decision logic to operational execution in incident handling with regard to efficiency and auditability.
 
@@ -201,16 +203,18 @@ In the implemented SOAR system, the MITRE ATT\&CK module offered a visually inte
     \item \textbf{Technique-Incident Association:} When incidents are ingested, the techniques can be mapped automatically or manually to links each incident to a corresponding set of ATT\&CK entries. This classification can be utilized to help develop the investigation.
 \end{itemize}
 
-\begin{figure}[ht]
+The integration of MITRE ATT\&CK in SOAR platforms serves multiple purposes: it enhances situational awareness, supports threat hunting, and allows for better alignment of detection and response strategies with real-world adversary tactics. Furthermore, it provides a foundation for behavioral analytics, red teaming, and compliance reporting.
+
+Commercial SOAR tools like Palo Alto Cortex XSOAR have integration with ATT\&CK built in to the tool. Incidents can be annotated with tactics and techniques, and XSOAR has dashboard modules
+
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{images/mitre_att&ck_matrix.png}
-    \caption[Interactive MITRE ATT\&CK matrix]{Interactive MITRE ATT\&CK matrix. The matrix enables analysts to visualize incident distribution across tactics and techniques, supporting rapid threat attribution and response prioritization.}
+    \includegraphics[width=0.95\textwidth,height=0.95\textheight]{images/mitre_att&ck_matrix.png}
+    \caption[Interactive MITRE ATT\&CK matrix]{Interactive MITRE ATT\&CK matrix that help analyst to filter incidents.}
     \label{fig:mitre-attck-matrix}
 \end{figure}
 
-The integration of MITRE ATT\&CK in SOAR platforms serves multiple purposes: it enhances situational awareness, supports threat hunting, and allows for better alignment of detection and response strategies with real-world adversary tactics. Furthermore, it provides a foundation for behavioral analytics, red teaming, and compliance reporting.
-
-Commercial SOAR tools like Palo Alto Cortex XSOAR have integration with ATT\&CK built in to the tool. Incidents can be annotated with tactics and techniques, and XSOAR has dashboard modules that allow for visualization of coverage and attack surface exposure~\cite{paloalto}. XSOAR can also leverage ATT\&CK metadata, and it supports threat intel enrichment, and filtering/reporting based on distribution of techniques. 
+that allow for visualization of coverage and attack surface exposure~\cite{paloalto}. XSOAR can also leverage ATT\&CK metadata, and it supports threat intel enrichment, and filtering/reporting based on distribution of techniques. 
 
 Splunk SOAR does not have a native ATT\&CK matrix framework, but playbooks and detections can be mapped to tactics and techniques via integration with the Splunk Security Essentials app or external visualization tools (eg, MITRE ATT\&CK Navigator)~\cite{splunk}.
 
